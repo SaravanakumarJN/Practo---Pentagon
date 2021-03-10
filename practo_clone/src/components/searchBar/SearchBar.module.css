@@ -1,0 +1,34 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.container input{
+    border:none; 
+    outline: none;
+}
+
+.container > div{
+    padding: 15px 10px;
+    border:0.5px solid #B4B4BE;
+    
+}
+
+.location{
+    width:20%;
+    position : relative;
+}
+
+.location > input{
+    width:70%;
+}
+
+.main{
+    width:30%;
+    position : relative;
+}
+
+.main > input{
+    width:90%;
+}
+
