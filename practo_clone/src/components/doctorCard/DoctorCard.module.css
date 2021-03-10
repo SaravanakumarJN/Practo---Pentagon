@@ -1,0 +1,95 @@
+.card{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 60%;
+    min-width: 600px;
+    height: 180px;
+    padding: 20px;
+    border-bottom: 1px solid #E8E7F0;
+}
+
+.left{
+    width:20%;
+    margin: 10px;
+}
+
+.avatar{
+    position: absolute;
+    height:150px;
+    width:150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.badge{
+    position: relative;
+    width:20px;
+    height: 20px;
+    border-radius: 50%;
+    top:110px;
+    left:125px;
+    background-color: #8E65E7;
+    border:1px solid white;
+}
+
+.mid{
+    width:45%;
+    margin: 10px;
+}
+
+.mid > h1{
+    color : #2FBEF0;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+.mid > p{
+    margin: 5px 0;
+    font-size: 15px;
+}
+
+.grey{
+    color : #8D91A1;
+}
+
+.line_break{
+    margin: 10px 0;
+    border-bottom: 1px solid #EAEAF1;
+}
+
+.ratings{
+    text-align: center;
+    width:60px;
+    height:15px;
+    padding: 5px;
+    font-size: 13px;
+    border-radius: 6px;
+    color : white;
+    background-color: #51A620;
+}
+
+.right{
+    width:25%;
+    margin:10px;
+    padding-top:120px;
+}
+
+.book_btn{
+    border:none;
+    outline:none;
+    background-color: #2FBEF0;
+    color: white;
+    width:200px;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.book_btn > span{
+    font-size: 11px;
+}
+
+
+
+
