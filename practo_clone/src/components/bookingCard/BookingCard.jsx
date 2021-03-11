@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import moment from "moment";
 import Button from '@material-ui/core/Button';
-import {getBookedSlots, bookSlot} from "../utils";
+import {getBookedSlots, bookSlot} from "../../utils";
 import styles from "./BookingCard.module.css"
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
 import FlareOutlinedIcon from '@material-ui/icons/FlareOutlined';
@@ -17,6 +17,8 @@ import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 import { Divider } from '@material-ui/core';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import { useHistory } from "react-router-dom";
+
 
 
 function TabPanel(props) {
@@ -70,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const BookingCard = () => {
+const BookingCard = ({doctors_id}) => {
+  const history = useHistory();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [date, setDate] = React.useState(moment().format());
@@ -148,7 +151,7 @@ const BookingCard = () => {
       type : 2
     },
     {
-      time : "19:30",
+      time : "19:00",
       timeStr : "7:00",
       type : 2
     },
@@ -165,7 +168,7 @@ const BookingCard = () => {
   ]
   const [slots, setSlots] = React.useState([...slotArray]);
   const [allSlots, setAllSlots] = React.useState([]);
-  const arr= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  const arr= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   const handleBookedSlots = (data, newValue) =>{
     const dateStr = moment().day(newValue + 3).format();
@@ -177,7 +180,7 @@ const BookingCard = () => {
   }
 
   React.useState(() => {
-    getBookedSlots("60489b6ad6d010119e660645")
+    getBookedSlots(doctors_id)
     .then(res => {
       setAllSlots(res.data.data);
       handleBookedSlots(res.data.data)
@@ -185,7 +188,6 @@ const BookingCard = () => {
   }, [])
 
   const handleChange = (event, newValue) => {
-    console.log(newValue);
     setValue(newValue);
     setDate(moment().day(newValue + 3).format());
     handleBookedSlots(allSlots, newValue);
@@ -193,23 +195,20 @@ const BookingCard = () => {
 
   const handleBookSlot = (time) => {
     const dateTimeStr = date.substring(0, 11) + time+ ":00+05:30"
-    console.log(dateTimeStr);
-    const postObj = {
-      doctor_id : "60489b6ad6d010119e660645",
-      name : "John Doe",
-      contact : "8425028144",
-      time : dateTimeStr
-    }
-    bookSlot(postObj)
-    .then(res => {
-        console.log(res);
-    })
+    // const postObj = {
+    //   doctor_id : doctors_id,
+    //   name : "John Doe",
+    //   contact : "8425028144",
+    //   time : dateTimeStr
+    // }
+    // bookSlot(postObj)
+    history.push(`/appointment/${doctors_id}/${dateTimeStr}`)
     
   }
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="white">
+      <AppBar position="static" color="transparent">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -239,7 +238,7 @@ const BookingCard = () => {
       </AppBar>
       {
         arr.map(item => (
-          <TabPanel value={value} index={item} className={classes.tabPanel}>
+          <TabPanel value={value} index={item} className={classes.tabPanel} key={item}>
             <Box className={classes.slotsCont}>
               <div className={styles.slotsCont_time}>
                 <WbSunnyOutlinedIcon className={styles.icon} color="action"/>
@@ -248,7 +247,7 @@ const BookingCard = () => {
               <div className={styles.slotsCont_slots}>
                 {
                   slots.map(item => (
-                    item.type === 0 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
+                    item.type === 0 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
                   ))
                 }     
               </div>
@@ -262,7 +261,7 @@ const BookingCard = () => {
               <div className={styles.slotsCont_slots}>
                 {
                   slots.map(item => (
-                    item.type === 1 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
+                    item.type === 1 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
                   ))
                 }     
               </div>
@@ -276,7 +275,7 @@ const BookingCard = () => {
               <div className={styles.slotsCont_slots}>
                 {
                   slots.map(item => (
-                    item.type === 2 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
+                    item.type === 2 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
                   ))
                 }     
               </div>
@@ -290,7 +289,7 @@ const BookingCard = () => {
               <div className={styles.slotsCont_slots}>
                 {
                   slots.map(item => (
-                    item.type === 3 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
+                    item.type === 3 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
                   ))
                 }     
               </div>

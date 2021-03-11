@@ -1,7 +1,8 @@
 .card{
     display: flex;
     flex-wrap: nowrap;
-    width: 60%;
+    width: 90%;
+    margin: auto;
     min-width: 600px;
     padding: 20px;
     border-bottom: 1px solid #E8E7F0;

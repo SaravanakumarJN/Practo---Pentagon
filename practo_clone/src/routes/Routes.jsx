@@ -1,7 +1,5 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import { BookingCard, bookingCard } from '../components/BookingCard'
-import { DemoPage } from '../pages/DemoPage'
 import { DoctorResultPage } from '../pages/doctorsResultPage/DoctorsResultPage'
 import { Pharmacy } from '../pages/Pharmacy'
 import {PharmacyCategories} from "../pages/PharmacyCategories"
@@ -13,9 +11,6 @@ import { Footer } from '../components/footer/Footer'
 const Routes = () => {
     return (
         <Switch>
-            <Route exact path = "/">
-                <DemoPage/>
-            </Route>
             <Route exact path = "/doctors">
                 <Navbar/>
                 <DoctorSearch/>
@@ -29,6 +24,11 @@ const Routes = () => {
             <Route exact path = "/doctors/:speciality/speciality/:lat/lat/:long/long">
                 <Navbar/>
                 <SpecialityResultPage/>
+                <Footer/>
+            </Route>
+            <Route exact path = "/appointment/:doctors_id/:time">
+                <Navbar/>
+                <h1>Hello</h1>
                 <Footer/>
             </Route>
             <Route exact path = "/pharmacy">
