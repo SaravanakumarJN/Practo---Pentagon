@@ -1,8 +1,10 @@
+import { StylesProvider } from '@material-ui/styles'
 import React from 'react'
 import styles from './SpecialityResultPage.module.css'
 import { useParams } from 'react-router'
 import {DoctorCard} from '../../components/doctorCard/DoctorCard'
 import { getDoctorBySpeciality, getDoctorsWithFilter } from '../../utilities/axios'
+
 
 const SpecialityResultPage = () => {
     const {speciality, lat, long} = useParams()
@@ -26,7 +28,7 @@ const SpecialityResultPage = () => {
     const getDoctorsFilter = (payload) => {
         getDoctorsWithFilter(payload)
         .then((data) => {
-            setDoctors(data.data)
+            setDoctors([...data.data])
             console.log(data)
         })
         .catch(err => console.log(err))
