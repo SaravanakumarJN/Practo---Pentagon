@@ -1,0 +1,21 @@
+.neardoctor{
+    padding: 50px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.covid{
+    background-color: #28328c;
+    padding: 30px 0px;
+}
+.covidhead{
+    margin-left: 60px;
+    
+}
+.coviddoctor{
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
