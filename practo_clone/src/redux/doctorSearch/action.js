@@ -1,7 +1,7 @@
 import { GET_DOCTORS_FAILURE, GET_DOCTORS_REQUEST, GET_DOCTORS_SUCCESS } from "./actionType"
 import axios from 'axios'
 
-const get_doctors_request = (payload) => {
+const get_doctors_request = () => {
     return{
         type : GET_DOCTORS_REQUEST,
     }
@@ -26,18 +26,25 @@ const get_doctors_error_handle = () => {
     }
 }
 
-const url = "http://localhost:8001/doctors"
+let cancel = ""
 const get_doctors_performer = (payload) => (dispatch) =>{
-    const {location, query} = payload
+    const {coordinates, query} = payload
     dispatch(get_doctors_request())
-    return axios.get(url, {
+
+    if(cancel){
+        cancel.cancel()
+    }
+    cancel = axios.CancelToken.source()
+
+    return axios.get(`http://localhost:2233/doctors/${query}/query`, {
+        cancelToken : cancel.token,
         params : {
-            city : location,
-            q : query
+            lat : coordinates.lat,
+            long : coordinates.long
         }
     })
     .then(res => {
-        dispatch(get_doctors_success(res.data))
+        dispatch(get_doctors_success(res.data.data))
         // console.log(res.data)
     })
     .catch(() => {
