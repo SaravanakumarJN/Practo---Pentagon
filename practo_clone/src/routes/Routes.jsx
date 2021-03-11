@@ -14,8 +14,10 @@ const Routes = () => {
     return (
         <Switch>
             <Route exact path = "/">
-                <Landingpage/>
-                {/* <Bookingdetails/> */}
+                <Navbar/>
+                {/* <Landingpage/> */}
+                <Bookingdetails/>
+                <Footer/>
             </Route>
             <Route exact path = "/doctors">
                 <Navbar/>

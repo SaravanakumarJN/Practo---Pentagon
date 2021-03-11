@@ -37,7 +37,13 @@ function getDoctorsWithFilter(payload){
     .then(res => res.data)
 }
 
-export {geo_encoding, geo_reverse_encoding, getDoctorByID, getDoctorBySpeciality, getDoctorsWithFilter}
+function stripePayment(payload){
+    return axios.post("http://localhost:2233/booking/payment", {
+        ...payload
+    })
+}
+
+export {geo_encoding, geo_reverse_encoding, getDoctorByID, getDoctorBySpeciality, getDoctorsWithFilter, stripePayment}
 
 
 //key  =>   okkegv9vibpsaq845p5lali4g33uw7zw
