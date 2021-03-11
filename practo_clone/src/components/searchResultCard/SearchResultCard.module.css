@@ -1,0 +1,31 @@
+.card{
+    height:40px;
+    display: flex;
+    border-bottom: 1px solid #DFE0E5;
+    padding: 10px;
+    text-align: left !important;
+}
+
+.card > div{
+    padding: 0 10px;
+}
+
+.left{
+    width: 40px;
+}
+
+.left > img{
+    height : 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name{
+    size : 14px;
+}
+
+.spec{
+    color: #9898A2;
+    font-size: 12px;
+}

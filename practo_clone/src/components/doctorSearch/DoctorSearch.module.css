@@ -1,0 +1,25 @@
+.container{
+    text-align: center;
+    background-color: #28328c;
+}
+
+.banner{
+    background: url(../../assets/practobg.svg) top no-repeat;
+    min-height: 540px;
+    background-attachment: fixed;
+    background-position-y: 60px;
+}
+
+.heading1{
+    font-weight:bolder;
+    font-size: 40px;
+    padding: 30px;
+    color: white
+}
+
+.heading2{
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+    margin: 15px 0 30px;
+}

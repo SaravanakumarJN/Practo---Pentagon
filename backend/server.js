@@ -37,17 +37,84 @@ const doctorsSchema = new mongoose.Schema({
 
 const Doctor = mongoose.model("doctor", doctorsSchema)
 
+//get all doctors
 app.get("/doctors" , async (req, res) =>{
+    const {lat, long} = req.query
     const doctor = await Doctor.find({loc: {
-        $near: {
+        $nearSphere: {
           $geometry: {
              type: "Point" ,
-             coordinates: [13.0836939 , 80.270186 ]
+             coordinates: [ Number(lat) || 13.0827 ,Number(long) || 80.2707 ],
           },
+          $maxDistance : 400000
         }
       }
    }).exec();
     res.status(200).json({data : doctor});
+})
+
+//get search 
+app.get("/doctors/:query/query", async(req, res) => {
+    const {query} = req.params
+    const {lat, long} = req.query
+    const doctor = await Doctor.find({$and : [
+        {
+            $or : [
+                {
+                    name : new RegExp(query, "i"),
+                },
+                {
+                    clinic_name : new RegExp(query, "i")
+                }
+            ]
+        },
+        {
+            loc : {
+                $near : {
+                    $geometry : {
+                        type : "Point",
+                        coordinates : [Number(lat), Number(long)]
+                    },
+                    $maxDistance : 400000
+                }
+            }
+        }
+    ]
+    }).lean().exec()
+    res.status(200).json({data : doctor})
+})
+​
+//search none
+app.get("/doctors//query", async(req, res) => {
+    res.status(200).json({data : []})
+})
+​
+//get based on speciality
+app.get("/doctors/:speciality/speciality", async(req, res) => {
+    const {speciality} = req.params
+    const {lat, long} = req.query
+    const doctor = await Doctor.find({
+        specialization : new RegExp(speciality, "i"),
+        loc: {
+            $near: {
+              $geometry: {
+                 type: "Point" ,
+                 coordinates: [ Number(lat),Number(long) ]
+              },
+              $maxDistance : 400000
+            }
+        }
+    }).lean().exec()
+    res.status(200).json({data : doctor})
+})
+​
+//get individual item on click
+app.get("/doctors/:id/id", async(req, res) => {
+    const {id} = req.params
+    const doctor = await Doctor.find({
+        id : id
+    }).lean().exec()
+    res.status(200).json({data : doctor})
 })
 
 
@@ -97,10 +164,10 @@ const Auth = mongoose.model("authentication", authSchema)
 //     res.status(200).json({data : slots});
 // });
 
-app.post("/bookings", async(req, res) => {
-    const slot = await Bookings.create(req.body);
-    res.status(201).json({data : slot});
-})
+// app.post("/authentication", async(req, res) => {
+//     const user = await .create(req.body);
+//     res.status(201).json({data : user});
+// })
 
 // app.get("/doctors/:doctor_id/bookings", async(req, res) => {
 //     const id = req.params.doctor_id;
