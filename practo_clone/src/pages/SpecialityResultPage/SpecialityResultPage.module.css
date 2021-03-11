@@ -1,3 +1,41 @@
+.feature_nav{
+    height:30px;
+    padding:15px 3%;
+    background-color: #2A388C;
+    width:94%;
+    display: flex;
+    flex-wrap: nowrap;
+    color:white;
+}
+
+.feature_nav > div{
+    margin: 0 30px;
+}
+
+.sort_label, .filter_label{
+    margin: 0 20px 0 0;
+}
+
+.select{
+    outline: none;
+    padding : 8px 12px;
+    background-color: #434EA2;
+    border:1px solid #434EA2;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.select:focus,
+.select:hover{
+    outline: none;
+}
+
+.select option{
+    background:#ffffff;
+    color:black
+}
+
 .container{
     width: 70%;
     margin-right: 1em;

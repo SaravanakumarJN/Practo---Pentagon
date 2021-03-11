@@ -2,8 +2,6 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Bookingdetails from '../components/Bookingdetails'
 import Landingpage from '../components/Landingpage'
-import { BookingCard, bookingCard } from '../components/BookingCard'
-import { DemoPage } from '../pages/DemoPage'
 import { DoctorResultPage } from '../pages/doctorsResultPage/DoctorsResultPage'
 import { Pharmacy } from '../pages/Pharmacy'
 import {PharmacyCategories} from "../pages/PharmacyCategories"
@@ -18,7 +16,6 @@ const Routes = () => {
             <Route exact path = "/">
                 <Landingpage/>
                 {/* <Bookingdetails/> */}
-                <DemoPage/>
             </Route>
             <Route exact path = "/doctors">
                 <Navbar/>
@@ -42,6 +39,7 @@ const Routes = () => {
                 <Footer/>
             </Route>
             <Route exact path = "/pharmacy">
+            </Route>
             {/* <Route exact path = "/pharmacy">
                 <Pharmacy/>
             </Route>
