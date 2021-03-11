@@ -1,10 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const uri = require("./uri");
+const cors = require('cors');
+const stripe = require('stripe')("sk_test_51ITniwLuzrELcYjAZlc55fGMQL8SQDAAeqN4smic3ZUMTvlWjhDQvsUQsEy2rTPI4aazIn8j8s6B2BZSG74XPNb600JHhUgpkB");
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 const connect = () =>{
     return mongoose.connect(uri , {
@@ -13,8 +17,6 @@ const connect = () =>{
         useUnifiedTopology: true
     })
 }
-
-
 
 const doctorsSchema = new mongoose.Schema({
     name: String,
@@ -149,6 +151,34 @@ app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => 
     }).sort({consulting_fee : 1}).lean().exec()
     res.status(200).json({data : doctors})
 })
+
+// ***************** Payment ********************
+
+//stripe integration
+app.post("/booking/payment", (req, res) => {
+    const {doctor, token} = req.body
+    const idempotencyKey = uuidv4()
+
+    return stripe.customers.create({
+        email : token.email,
+        source : token.id
+    })
+    .then((customer) => {
+        // console.log(customer)
+        stripe.charges.create({
+            amount: doctor.price * 100,
+            currency : "INR",
+            customer: customer.id,
+            receipt_email : token.email,
+            description : `Booked appointment with ${doctor.name}`
+        }, {idempotencyKey : idempotencyKey},  function(err, charge) {
+          
+        })
+    })
+    .then((result) => res.status(200).json(result))
+    .catch((error) => console.log(error))
+})
+
 
 // ***************** Booking ********************
 const bookingSchema = new mongoose.Schema({

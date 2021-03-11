@@ -1,4 +1,3 @@
-import { StylesProvider } from '@material-ui/styles'
 import React from 'react'
 import styles from './SpecialityResultPage.module.css'
 import { useParams } from 'react-router'
