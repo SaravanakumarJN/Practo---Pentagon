@@ -3,14 +3,13 @@
     flex-wrap: nowrap;
     width: 60%;
     min-width: 600px;
-    height: 180px;
     padding: 20px;
     border-bottom: 1px solid #E8E7F0;
 }
 
 .left{
     width:20%;
-    margin: 10px;
+    margin: 10px 10px 0;
 }
 
 .avatar{
@@ -34,7 +33,7 @@
 
 .mid{
     width:45%;
-    margin: 10px;
+    margin: 10px 10px 0;
 }
 
 .mid > h1{

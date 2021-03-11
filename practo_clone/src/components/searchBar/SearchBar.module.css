@@ -1,6 +1,7 @@
 .container{
     display: flex;
     justify-content: center;
+    margin:15px 0;
 }
 
 .container input{
@@ -9,9 +10,9 @@
 }
 
 .container > div{
-    padding: 15px 10px;
+    padding: 14.5px 10px;
     border:0.5px solid #B4B4BE;
-    
+    background-color: white;
 }
 
 .location{
@@ -19,8 +20,17 @@
     position : relative;
 }
 
+.location_add_icon{
+    position: absolute;
+    top : 15px;
+    right:20px;
+    color : grey;
+}
+
 .location > input{
-    width:70%;
+    padding-left : 35px;
+    padding-right: 40px;
+    width:65%;
 }
 
 .main{
@@ -28,7 +38,37 @@
     position : relative;
 }
 
-.main > input{
-    width:90%;
+.search_icon, .location_icon{
+    position: absolute;
+    top : 14.5px;
+    color: grey;
 }
 
+.main > input{
+    padding-left : 35px;
+    width:80%;
+}
+
+.dropdown{
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    top:50px;
+    left:0px;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.speciality{
+    font-size: 13px;
+    color : #8D809E;
+}
+
+.speciality span{
+    margin: 0 1%;
+    cursor: pointer;
+}
+
+.speciality > span:hover{
+    text-decoration: underline;
+}
