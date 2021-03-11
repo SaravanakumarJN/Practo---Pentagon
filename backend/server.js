@@ -14,6 +14,8 @@ const connect = () =>{
     })
 }
 
+
+
 const doctorsSchema = new mongoose.Schema({
     name: String,
     specialization: String,
@@ -80,13 +82,11 @@ app.get("/doctors/:query/query", async(req, res) => {
     ]
     }).lean().exec()
     res.status(200).json({data : doctor})
-})
-
+});
 //search none
 app.get("/doctors//query", async(req, res) => {
     res.status(200).json({data : []})
 })
-
 //get based on speciality
 app.get("/doctors/:speciality/speciality", async(req, res) => {
     const {speciality} = req.params
@@ -105,7 +105,6 @@ app.get("/doctors/:speciality/speciality", async(req, res) => {
     }).lean().exec()
     res.status(200).json({data : doctor})
 })
-
 //get individual item on click
 app.get("/doctors/:id/id", async(req, res) => {
     const {id} = req.params
@@ -116,10 +115,64 @@ app.get("/doctors/:id/id", async(req, res) => {
 })
 
 
-// app.post("/movies", async(req, res) => {
-//     const user = await Movie.create(req.body);
-//     res.send(201).json({data : user});
+// ***************** Booking ********************
+const bookingSchema = new mongoose.Schema({
+    doctor_id: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "doctor",
+        required : true
+    },
+    name : String,
+    contact : String,
+    time : String
+});
+
+const Bookings = mongoose.model("booking", bookingSchema)
+
+app.get("/bookings" , async (req, res) =>{
+    const slots = await Bookings.find({}).exec();
+    res.status(200).json({data : slots});
+});
+
+app.post("/bookings", async(req, res) => {
+    const slot = await Bookings.create(req.body);
+    res.status(201).json({data : slot});
+})
+
+app.get("/doctors/:doctor_id/bookings", async(req, res) => {
+    const id = req.params.doctor_id;
+    const slots = await Bookings.find({doctor_id : id}).lean().exec();
+    res.status(200).json({data : slots});
+})
+
+
+// ************** Authentication **************
+const authSchema = new mongoose.Schema({
+    name: String,
+    email : String,
+    password : String,
+    phone : String
+});
+
+const Auth = mongoose.model("authentication", authSchema)
+
+// app.get("/bookings" , async (req, res) =>{
+//     const slots = await Bookings.find({}).exec();
+//     res.status(200).json({data : slots});
+// });
+
+// app.post("/authentication", async(req, res) => {
+//     const user = await .create(req.body);
+//     res.status(201).json({data : user});
 // })
+
+// app.get("/doctors/:doctor_id/bookings", async(req, res) => {
+//     const id = req.params.doctor_id;
+//     const slots = await Bookings.find({doctor_id : id}).lean().exec();
+//     res.status(200).json({data : slots});
+// })
+
+
 
 // app.patch("/movies/:id", async(req, res) => {
 //     const id = req.params.id;
