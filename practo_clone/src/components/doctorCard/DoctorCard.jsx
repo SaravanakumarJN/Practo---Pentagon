@@ -1,9 +1,16 @@
 import React from 'react'
+import { BookingCard } from '../bookingCard/BookingCard';
 import styles from './DoctorCard.module.css'
 
 const DoctorCard = ({data}) => {
+    const [open, setOpen] = React.useState(false);
+
+    const handleBookingCard = () => {
+        setOpen(!open);
+    }
 
     return (
+        <>
         <div className = {styles.card}>
             <div className = {styles.left}>
                 <img 
@@ -25,9 +32,16 @@ const DoctorCard = ({data}) => {
                 </div>
             </div>
             <div className = {styles.right}> 
-                <button className = {styles.book_btn}>Book Appointment<br/><span> No Booking Fee</span></button>
+                <button onClick={handleBookingCard} className = {styles.book_btn}>Book Appointment<br/><span> No Booking Fee</span></button>
             </div>
+            
         </div>
+        <div>
+        {
+            open && <BookingCard doctors_id ={data._id}/>
+        }
+        </div>
+        </>
     )
 }
 

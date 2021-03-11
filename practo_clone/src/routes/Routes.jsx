@@ -16,10 +16,8 @@ const Routes = () => {
     return (
         <Switch>
             <Route exact path = "/">
-
                 <Landingpage/>
                 {/* <Bookingdetails/> */}
-
                 <DemoPage/>
             </Route>
             <Route exact path = "/doctors">
@@ -38,6 +36,12 @@ const Routes = () => {
                 <Footer/>
 
             </Route>
+            <Route exact path = "/appointment/:doctors_id/:time">
+                <Navbar/>
+                <h1>Hello</h1>
+                <Footer/>
+            </Route>
+            <Route exact path = "/pharmacy">
             {/* <Route exact path = "/pharmacy">
                 <Pharmacy/>
             </Route>
