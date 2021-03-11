@@ -82,13 +82,11 @@ app.get("/doctors/:query/query", async(req, res) => {
     ]
     }).lean().exec()
     res.status(200).json({data : doctor})
-})
-​
+});
 //search none
 app.get("/doctors//query", async(req, res) => {
     res.status(200).json({data : []})
 })
-​
 //get based on speciality
 app.get("/doctors/:speciality/speciality", async(req, res) => {
     const {speciality} = req.params
@@ -107,7 +105,6 @@ app.get("/doctors/:speciality/speciality", async(req, res) => {
     }).lean().exec()
     res.status(200).json({data : doctor})
 })
-​
 //get individual item on click
 app.get("/doctors/:id/id", async(req, res) => {
     const {id} = req.params
