@@ -1,0 +1,99 @@
+.heading {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    margin-left: 80px;
+}
+.user{
+    margin-right: 80px;
+}
+.content{
+    padding-top: 30px;
+    background-color:#F0F0F5 ;
+    height: 100vh;
+}
+.form{
+    display: flex;
+    width: 1000px;
+    margin: auto;
+    /* justify-content: space-between; */
+}
+.left{
+    width: 450px;
+    background-color: #ffffff;
+    border: 1px solid rgb(231, 225, 225);
+    margin: 0 20px;
+    height: 470px;
+}
+.right{
+    width: 400px;
+    margin: 0 30px;
+}
+.timings{
+    display: flex;
+    justify-content: space-between;
+    padding: 1px 15px;
+    border-top: 1px solid rgb(231, 225, 225);
+}
+.appoint{
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+    color: #414146;
+}
+.date{
+    display: flex;
+    align-items: center;
+}
+.time{
+    display: flex;
+    align-items: center;
+}
+.doctor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    border-top: 1px solid rgb(231, 225, 225); 
+    color: #787887;
+}
+.hospital{
+    height: 120px;
+    color: #787887;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgb(231, 225, 225);
+}
+.patienthead h5{
+    font-size: 14px;
+    width: 100%;
+    color: #414146;
+}
+.name{
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #b4b4be;
+    border-radius: 2px;
+    outline: none;
+    background-color: #fff;
+    color: #414146;
+    font-size: 14px;
+}
+.confirm{
+    width: 100%;
+    background-color: #199FD9;
+    display: flex;
+    margin: 15px 0;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+}
+.conditions{
+    font-size: 12px;
+}

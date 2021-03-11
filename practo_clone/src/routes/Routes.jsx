@@ -1,5 +1,9 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
+import Bookingdetails from '../components/Bookingdetails'
+import Landingpage from '../components/Landingpage'
+import { BookingCard, bookingCard } from '../components/BookingCard'
+import { DemoPage } from '../pages/DemoPage'
 import { DoctorResultPage } from '../pages/doctorsResultPage/DoctorsResultPage'
 import { Pharmacy } from '../pages/Pharmacy'
 import {PharmacyCategories} from "../pages/PharmacyCategories"
@@ -11,6 +15,11 @@ import { Footer } from '../components/footer/Footer'
 const Routes = () => {
     return (
         <Switch>
+            <Route exact path = "/">
+                <Landingpage/>
+                {/* <Bookingdetails/> */}
+                <DemoPage/>
+            </Route>
             <Route exact path = "/doctors">
                 <Navbar/>
                 <DoctorSearch/>
@@ -25,6 +34,7 @@ const Routes = () => {
                 <Navbar/>
                 <SpecialityResultPage/>
                 <Footer/>
+
             </Route>
             <Route exact path = "/appointment/:doctors_id/:time">
                 <Navbar/>
@@ -32,11 +42,12 @@ const Routes = () => {
                 <Footer/>
             </Route>
             <Route exact path = "/pharmacy">
+            {/* <Route exact path = "/pharmacy">
                 <Pharmacy/>
             </Route>
             <Route path = "/pharmacy/categories/">
                 <PharmacyCategories/>
-            </Route>
+            </Route> */}
         </Switch>
     )
 }
