@@ -37,6 +37,8 @@ const doctorsSchema = new mongoose.Schema({
 
 const Doctor = mongoose.model("doctor", doctorsSchema)
 
+// ***************** Doctor Search ********************
+
 //get all doctors
 app.get("/doctors" , async (req, res) =>{
     const {lat, long} = req.query
@@ -83,10 +85,12 @@ app.get("/doctors/:query/query", async(req, res) => {
     }).lean().exec()
     res.status(200).json({data : doctor})
 });
+
 //search none
 app.get("/doctors//query", async(req, res) => {
     res.status(200).json({data : []})
 })
+
 //get based on speciality
 app.get("/doctors/:speciality/speciality", async(req, res) => {
     const {speciality} = req.params
@@ -105,6 +109,7 @@ app.get("/doctors/:speciality/speciality", async(req, res) => {
     }).lean().exec()
     res.status(200).json({data : doctor})
 })
+
 //get individual item on click
 app.get("/doctors/:id/id", async(req, res) => {
     const {id} = req.params
@@ -114,6 +119,36 @@ app.get("/doctors/:id/id", async(req, res) => {
     res.status(200).json({data : doctor})
 })
 
+//filter by consulting fee
+app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
+    const {speciality, from, to} = req.params
+    const {lat, long} = req.query
+    const doctors = await Doctor.find({
+        $and : [
+            {
+                specialization : new RegExp(speciality, "i")
+            },
+            {
+                consulting_fee : {$gte : from}
+            },
+            {
+                consulting_fee : {$lte : to}
+            },
+            {
+                loc : {
+                    $near : {
+                        $geometry : {
+                            type : "Point",
+                            coordinates : [Number(lat), Number(long)]
+                        },
+                        $maxDistance : 400000
+                    }
+                }
+            }
+        ]
+    }).sort({consulting_fee : 1}).lean().exec()
+    res.status(200).json({data : doctors})
+})
 
 // ***************** Booking ********************
 const bookingSchema = new mongoose.Schema({

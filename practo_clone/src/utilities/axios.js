@@ -17,7 +17,6 @@ function getDoctorByID(payload){
 
 function getDoctorBySpeciality(payload){
     const {speciality, lat, long} = payload
-    console.log(payload)
     return axios.get(`http://localhost:2233/doctors/${speciality}/speciality`, {
         params : {
             lat : lat.trim(),
@@ -27,7 +26,18 @@ function getDoctorBySpeciality(payload){
     .then(res => res.data)
 }
 
-export {geo_encoding, geo_reverse_encoding, getDoctorByID, getDoctorBySpeciality}
+function getDoctorsWithFilter(payload){
+    const {speciality, lat, long, from, to} = payload
+    return axios.get(`http://localhost:2233/doctors/${speciality}/speciality/${from}/from/${to}/to`, {
+        params : {
+            lat : lat.trim(),
+            long : long.trim()
+        }
+    })
+    .then(res => res.data)
+}
+
+export {geo_encoding, geo_reverse_encoding, getDoctorByID, getDoctorBySpeciality, getDoctorsWithFilter}
 
 
 //key  =>   okkegv9vibpsaq845p5lali4g33uw7zw
