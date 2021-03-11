@@ -1,0 +1,26 @@
+.slotsCont_time{
+    flex-basis: 25%;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 1.5em;
+    margin-right: 0.5em;
+}
+
+.slotsCont_slots{
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5em 0;
+}
+
+.slotsCont_time p{
+    color: #414146;
+    margin:0 8px;
+}
+
+
+/* .slotItem{
+    width: 2em;
+    margin: 1em;
+} */
+
