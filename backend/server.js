@@ -215,11 +215,32 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
 const authSchema = new mongoose.Schema({
     name: String,
     email : String,
-    password : String,
-    phone : String
+    user_id : String,
+    image_url : String
 });
 
 const Auth = mongoose.model("authentication", authSchema)
+
+//post 
+app.post("/user/authentication", async(req, res) => {
+    const {name, email, imageUrl, googleId} = req.body
+    const userCheck = await Auth.find({user_id : googleId}).exec()
+    if(userCheck.length == 0){
+        const to_insert = {
+            name : name,
+            email : email,
+            user_id : googleId,
+            image_url : imageUrl
+        }
+        await Auth.insertMany([to_insert])
+        const userCheckConformation = await Auth.find({user_id : googleId}).exec()
+        res.status(200).json({data : userCheckConformation})
+    }
+    else{
+        res.status(200).json({data : userCheck})
+    }
+    
+})
 
 // app.get("/bookings" , async (req, res) =>{
 //     const slots = await Bookings.find({}).exec();

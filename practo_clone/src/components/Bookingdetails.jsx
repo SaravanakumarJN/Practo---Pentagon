@@ -30,15 +30,7 @@ const Bookingdetails = () => {
     }
 
     return (
-        <div>
-            <div className={styles.heading}>
-                <div className={styles.logo}>
-                    <img src="https://nav.practo.com/9.5.5/consumer/images/practo.svg" style={{height:"25px"}} alt="practo logo"></img>
-                </div>
-                <div className={styles.user}>
-                    Bharath Reddy  v
-                </div>
-            </div>
+        <div className = {styles.container}>
             <div className={styles.content}>
                 <div className={styles.form}>
                     <div className={styles.left}>
