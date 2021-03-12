@@ -3,6 +3,8 @@ import styles from "./Bookingdetails.module.css"
 import { useParams } from 'react-router'
 import axios from 'axios'
 import {getDocData} from "../utils";
+import StripeCheckout from 'react-stripe-checkout'
+import { stripePayment } from '../utilities/axios'
 
 
 // const doctor= {
@@ -28,6 +30,17 @@ const Bookingdetails = () => {
             setDocData(res.data.data[0]);
         })
     }, [])
+    const makePayment = (token) => {
+        const body = {
+            token,
+            doctor
+        }
+        stripePayment(body)
+        .then(res => {
+            console.log(res)
+        })
+    }
+
     return (
         <div>
             <div className={styles.heading}>
@@ -98,8 +111,16 @@ const Bookingdetails = () => {
                             <p>Your Email<span style={{color:"red"}}>*</span></p>
                             <input type="text" value={""} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
                         </div>
-                        <div className={styles.confirm}>
-                            confirm
+                        <div>
+                            <StripeCheckout
+                                stripeKey = "pk_test_51ITniwLuzrELcYjAY5A3nHnhpdreI7d7ZzOlCqfqQSZM0L6ay3T1LhRaNuDNZ96jMEAJ9ZRn5QsCyaD87yD4pFxi00g4zrdqCF"
+                                token = {makePayment}
+                                name = {`Book appoinment with ${doctor.name}`}
+                                amount = {doctor.consulting_fee * 100}
+                                currency = "INR"
+                            >
+                                <button className = {styles.confirm}>Book Appointment</button>
+                            </StripeCheckout>
                         </div>
                         <div className={styles.conditions}>
                             <p>1. Updates will be sent to +916303583383</p>

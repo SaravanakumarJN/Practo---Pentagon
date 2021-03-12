@@ -16,6 +16,10 @@ const Routes = () => {
             <Route exact path = "/">
                 <Landingpage/>
                 {/* <Bookingdetails/> */}
+                <Navbar/>
+                {/* <Landingpage/> */}
+                <Bookingdetails/>
+                <Footer/>
             </Route>
             <Route exact path = "/doctors">
                 <Navbar/>
@@ -38,6 +42,8 @@ const Routes = () => {
                 <Footer/>
             </Route>
             <Route exact path = "/pharmacy"></Route>
+            <Route exact path = "/pharmacy">
+            </Route>
             {/* <Route exact path = "/pharmacy">
                 <Pharmacy/>
             </Route>

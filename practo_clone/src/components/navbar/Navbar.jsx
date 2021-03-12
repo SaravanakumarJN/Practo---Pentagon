@@ -1,16 +1,24 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
+    const history = useHistory()
+
     return (
         <nav className = {styles.nav}>
-            <div className = {styles.logo}>
+            <div 
+                className = {styles.logo}
+                onClick = {() => history.push("/")}
+            >
                 <img
                     src = "https://www.practo.com/nav/9.5.5/consumer/images/practo.svg"
                     alt = "logo"
                 />
             </div>
-            <div className = {styles.left}>
+            <div 
+                className = {styles.left} 
+                onClick = {() => history.push("/doctors")}>
                 <strong>
                     Doctors
                 </strong>
