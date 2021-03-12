@@ -8,6 +8,7 @@ import { SpecialityResultPage } from '../pages/SpecialityResultPage/SpecialityRe
 import { Navbar } from '../components/navbar/Navbar'
 import { Footer } from '../components/footer/Footer'
 import { LoginPage } from '../pages/loginPage/LoginPage'
+import { AppointmentsCard } from '../components/Appointments/AppointmentsCard'
 import { Appointments } from '../pages/Appointments/Appointments'
 import { PrivateRoutes } from './PrivateRoutes'
 

@@ -221,6 +221,22 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
     const slots = await Bookings.find({doctor_id : id}).lean().exec();
     res.status(200).json({data : slots});
 })
+// app.delete("/bookings/delete",async (req,res)=>{
+//     const del= await Bookings.deleteMany({})
+//     res.status(200).send("deleted")
+// })
+
+app.get("/appointments/:id",async(req,res)=>{
+    const id = req.params.id;
+    const appointments= await Bookings.find({userId:id}).lean().exec();
+    res.status(200).send({data:appointments})
+})
+
+app.delete("/appointments/:id",async(req,res)=>{
+    const id = req.params.id;
+    const appoint = await Bookings.deleteOne({_id:id});
+    res.status(200).send("Successfully Deleted")
+})
 
 // ************** Authentication **************
 const authSchema = new mongoose.Schema({
