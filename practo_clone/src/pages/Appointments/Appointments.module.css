@@ -45,6 +45,12 @@
     margin: 5px;
 }
 
+.userDetails_left img{
+    width: 3em;
+    height: 3em;
+    object-fit: cover;
+}
+
 
 .main{
     display: flex;

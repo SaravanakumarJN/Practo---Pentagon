@@ -11,4 +11,9 @@ const getDocData = (docId) => {
     return axios.get(`http://localhost:2233/doctors/${docId}`)
 }
 
-export {getBookedSlots, bookSlot, getDocData};
+const getUserAppointments = (userId) => {
+    return axios.get(`http://localhost:2233/appointments/${userId}`)
+}
+
+
+export {getBookedSlots, bookSlot, getDocData, getUserAppointments};
