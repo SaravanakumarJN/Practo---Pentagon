@@ -202,6 +202,7 @@ const BookingCard = ({doctors_id}) => {
     //   time : dateTimeStr
     // }
     // bookSlot(postObj)
+    console.log(time)
     history.push(`/appointment/${doctors_id}/${dateTimeStr}`)
     
   }
@@ -251,6 +252,7 @@ const BookingCard = ({doctors_id}) => {
                     && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
                       value === 0 ? Number(date.substring(10, 12)) < Number(item.time.substring(0, 2)) ? "false" : "true"  : "false"
                     }>{item.timeStr}</Button>
+                  
                 ))
                 }     
               </div>

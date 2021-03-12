@@ -102,7 +102,7 @@ const Bookingdetails = () => {
                             <input type="text" className={styles.name} value={phone}  onChange={(e) => setPhone(e.target.value)}   placeholder="Enter Mobile No."></input>
                         </div>
                         <div>
-                            <p>Your Email<span style={{color:"red"}}>*</span></p>
+                            <p>Your Email</p>
                             <input type="text" value={user.email} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
                         </div>
                         <div>
