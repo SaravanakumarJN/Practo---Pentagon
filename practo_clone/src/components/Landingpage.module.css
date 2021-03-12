@@ -19,3 +19,174 @@
     align-items: center;
     justify-content: space-evenly;
 }
+/* .topimage{
+    padding-top: 80px;
+} */
+.specialbtn{
+    color: #14bef0;
+    border: 2px solid #14bef0;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+.specialities{
+    padding: 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+.consultations{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 35px;
+}
+
+.consult{
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.consult :nth-child(3){
+    color: #14BEF0;
+}
+.consult :nth-child(2){
+    color: #6B6B6F;
+}
+.consultheading{
+    color: #414146;
+    margin-left: 40px;
+}
+.consultspecial{
+    font-size: 14px;
+    width: 270px;
+    color: #414146;
+    cursor: pointer;
+    
+}
+.consultspecial > img{
+    max-width: 100%;
+    border-radius: 5px;
+}
+.consultdiff{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.consultspecial >h3{
+    margin: 0;
+}
+.consultspecial >h3:hover{
+    color: turquoise;
+}
+
+.article{
+    width: 280px;
+    color: #414146;
+    margin: 20px;
+}
+
+.article >img{
+    max-width: 100%;
+    height: 230px;
+    border-radius: 5px;
+}
+.readarticle{
+    width: 360px;
+    color: #414146;
+    margin: 20px;
+}
+.article h5{
+    margin:5px;
+}
+.article p{
+    margin:5px;
+}
+.readarticle>button{
+    padding: 18px 25px;
+    background-color: #14bef0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.articleContainer{
+    width: 1100px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    border-top: 1px solid #ccccd1;
+    border-bottom: 1px solid #ccccd1;
+    margin:45px auto;
+}
+.inputBox{
+    display: flex;
+    border: 1px solid #d7d7e0;
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+.inputBox>input{
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    flex-grow: 1;
+    background-color: transparent;
+}
+.code{
+    border-right:1px solid #d7d7e0 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    padding: 0px 10px;
+}
+.smsbtn{
+    width: 100px;
+    padding: 15px;
+    background-color: #14bef0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.inputContainer{
+    display: flex;
+    align-items: center;
+    
+}
+.signup{
+   display: flex; 
+   align-items: center;
+   justify-content: center;
+   background-color: #f8f8fb;
+   padding:30px 0px
+}
+.download{
+    width: 430px;
+    margin: 50px;
+    color: #414146;
+}
+
+.google{
+    display: flex;
+    margin-top: 30px;
+}
+.google img{
+    width: 130px;
+    height: 40px;
+    margin-right: 20px;
+    cursor: pointer;
+}

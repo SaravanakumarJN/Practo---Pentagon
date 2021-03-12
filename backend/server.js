@@ -156,6 +156,8 @@ const authSchema = new mongoose.Schema({
 
 const Auth = mongoose.model("authentication", authSchema)
 
+
+
 // app.get("/bookings" , async (req, res) =>{
 //     const slots = await Bookings.find({}).exec();
 //     res.status(200).json({data : slots});
