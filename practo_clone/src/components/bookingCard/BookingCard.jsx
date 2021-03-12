@@ -8,18 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import moment from "moment";
 import Button from '@material-ui/core/Button';
-import {getBookedSlots, bookSlot} from "../../utils";
+import {getBookedSlots} from "../../utils";
 import styles from "./BookingCard.module.css"
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
 import FlareOutlinedIcon from '@material-ui/icons/FlareOutlined';
 import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 import { Divider } from '@material-ui/core';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import { useHistory } from "react-router-dom";
-
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
