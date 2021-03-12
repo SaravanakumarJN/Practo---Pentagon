@@ -1,8 +1,25 @@
+.container h1{
+    margin: 0.67em 0;
+}
+.container h2{
+    margin: 0.83em 0;
+}
+.container p,
+.container h3{
+    margin: 1em 0;
+}
+.container h4{
+    margin: 1.33em 0;
+}
+.container h5{
+    margin:1.67em 0;
+}
 .neardoctor{
     padding: 50px 0px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
     
 }
 .covid{
@@ -19,21 +36,18 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
-/* .topimage{
-    padding-top: 80px;
-} */
+.coviddoctor > img{
+    margin: 20px;
+}
 .specialbtn{
     color: #14bef0;
     border: 2px solid #14bef0;
     padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
     border-radius: 5px;
     cursor: pointer;
-    
+    text-align: center;
 }
 .specialities{
     padding: 0 100px;
@@ -47,6 +61,7 @@
     align-items: center;
     justify-content: space-evenly;
     padding: 35px;
+    flex-wrap: wrap;
 }
 
 .consult{
@@ -81,9 +96,10 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
-.consultspecial >h3{
-    margin: 0;
+.consultspecial{
+    margin: 20px 0;
 }
 .consultspecial >h3:hover{
     color: turquoise;
@@ -120,7 +136,6 @@
     cursor: pointer;
 }
 .articleContainer{
-    width: 1100px;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -128,6 +143,7 @@
     border-top: 1px solid #ccccd1;
     border-bottom: 1px solid #ccccd1;
     margin:45px auto;
+    flex-wrap: wrap;
 }
 .inputBox{
     display: flex;
@@ -173,7 +189,8 @@
    align-items: center;
    justify-content: center;
    background-color: #f8f8fb;
-   padding:30px 0px
+   padding:30px 0px;
+   flex-wrap: wrap;
 }
 .download{
     width: 430px;

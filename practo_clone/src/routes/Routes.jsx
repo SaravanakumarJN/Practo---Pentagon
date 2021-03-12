@@ -9,6 +9,7 @@ import { Navbar } from '../components/navbar/Navbar'
 import { Footer } from '../components/footer/Footer'
 import { LoginPage } from '../pages/loginPage/LoginPage'
 import { Appointments } from '../pages/Appointments/Appointments'
+import { PrivateRoutes } from './PrivateRoutes'
 
 const Routes = () => {
     return (
@@ -20,8 +21,6 @@ const Routes = () => {
             <Route exact path = "/">
                 <Navbar/>
                 <Landingpage/>
-                {/* <Bookingdetails/> */}
-                {/* <Landingpage/> */}
                 <Footer/>
             </Route>
             <Route exact path = "/doctors">
@@ -39,18 +38,16 @@ const Routes = () => {
                 <SpecialityResultPage/>
                 <Footer/>
             </Route>
-            <Route exact path = "/appointment/:doctors_id/:time">
+            <PrivateRoutes exact path = "/appointment/:doctors_id/:time">
                 <Navbar/>
                 <Bookingdetails/> 
                 <Footer/>
-            </Route>
-            <Route exact path = "/appointment/:userId">
+            </PrivateRoutes>
+            <PrivateRoutes exact path = "/appointment/:userId">
                 <Navbar/>
                 <Appointments/> 
                 <Footer/>
-            </Route>
-            
-  
+            </PrivateRoutes>
         </Switch>
     )
 }

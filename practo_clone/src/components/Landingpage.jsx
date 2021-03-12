@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from "./Landingpage.module.css"
+
 const Landingpage = () => {
+
     return (
-        <div>
+        <div className = {styles.container}>
             <div className={styles.topimage}>
                 <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/banner.png"
                 style={{height:"320px",width:"100%"}} alt="fdgf"></img>
@@ -40,32 +42,32 @@ const Landingpage = () => {
             <div className={styles.consultations}>
                 <div className={styles.consult}>
                     <img src="https://www.practostatic.com/consult/consult-home/symptoms_icon/irregular-painful+period.png"
-                    style={{width:"150px"}}></img>
+                    style={{width:"150px"}} alt = "img"></img>
                     <h5>Period doubts</h5>
                     <h5>CONSULT NOW</h5>
                 </div>
                 <div className={styles.consult}>
-                    <img src="https://www.practostatic.com/consult/consult-home/symptoms_icon/Acne.png" style={{width:"150px"}}></img>
+                    <img src="https://www.practostatic.com/consult/consult-home/symptoms_icon/Acne.png" style={{width:"150px"}} alt = "img"></img>
                     <h5>Acne,pimple or Skin issues</h5>
                     <h5>CONSULT NOW</h5>
                 </div>
                 <div className={styles.consult}>
-                    <img src="https://www.practo.com/consult/static/images/top-speciality-sexology.svg" style={{width:"150px"}}></img>
+                    <img src="https://www.practo.com/consult/static/images/top-speciality-sexology.svg" style={{width:"150px"}} alt = "img"></img>
                     <h5>Performance issues in bed</h5>
                     <h5>CONSULT NOW</h5>
                 </div>
                 <div className={styles.consult}>
-                    <img src="https://www.practostatic.com/consult/consult-home/symptoms_icon/coughing.png" style={{width:"150px"}}></img>
+                    <img src="https://www.practostatic.com/consult/consult-home/symptoms_icon/coughing.png" style={{width:"150px"}} alt = "img"></img>
                     <h5>Cold,Cough or Fever</h5>
                     <h5>CONSULT NOW</h5>
                 </div>
                 <div className={styles.consult}>
-                    <img src="https://www.practo.com/consult/static/images/top-speciality-pediatric.svg" style={{width:"150px"}}></img>
+                    <img src="https://www.practo.com/consult/static/images/top-speciality-pediatric.svg" style={{width:"150px"}} alt = "img"></img>
                     <h5>Child not feeling well</h5>
                     <h5>CONSULT NOW</h5>
                 </div>
                 <div className={styles.consult}>
-                    <img src="https://www.practostatic.com/acred/search-assets/2/12-mental-wellness.png" style={{width:"150px"}}></img>
+                    <img src="https://www.practostatic.com/acred/search-assets/2/12-mental-wellness.png" style={{width:"150px"}} alt = "img"></img>
                     <h5>Depression or anxiety</h5>
                     <h5>CONSULT NOW</h5>
                 </div>
@@ -77,22 +79,22 @@ const Landingpage = () => {
                 </div>
                 <div className={styles.consultdiff}>
                     <div className={styles.consultspecial}>
-                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-dentist@2x.jpg"></img>
+                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-dentist@2x.jpg" alt = "img"></img>
                         <h3>Dentist</h3>
                         <p>Teething troubles? Schedule a dental checkup</p>
                     </div>
                     <div className={styles.consultspecial}>
-                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-gynecologist@2x.jpg"></img>
+                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-gynecologist@2x.jpg" alt = "img"></img>
                         <h3>Gynecologist/Obstetrician</h3>
                         <p>Explore for women's health,pregnancy and infertility treatments</p>
                     </div>
                     <div className={styles.consultspecial}>
-                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-dietitian@2x.jpg"></img>
+                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-dietitian@2x.jpg" alt = "img"></img>
                         <h3>Dietitian/Nutrition</h3>
                         <p>Get guidance on eating right,weight management and sports nutrition</p>
                     </div>
                     <div className={styles.consultspecial}>
-                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-physiotherapist@2x.jpg"></img>
+                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1558283618/sp-physiotherapist@2x.jpg" alt = "img"></img>
                         <h3>Physiotherapist</h3>
                         <p>Pulled a muscle? Get it treated by a trained physiotherapist</p>
                     </div>
@@ -105,13 +107,13 @@ const Landingpage = () => {
                     <button>See all articles</button>
                 </div>
                 <div className={styles.article}>
-                    <img src="https://www.practostatic.com/fit/5fd27b74d9477cb633445cf3f105078bbc479910"></img>
+                    <img src="https://www.practostatic.com/fit/5fd27b74d9477cb633445cf3f105078bbc479910" alt = "img"></img>
                     <h5 style={{color:"#079ac7"}}>CORONAVIRUS</h5>
                     <h5>12 Coronavirus Myths and Facts That You Should Be Aware Of</h5>
                     <p>Dr . Diana Borgio</p>
                 </div>
                 <div className={styles.article}>
-                    <img src="https://www.practostatic.com/fit/bade52edc7fb158bf627216bf96c2b881a97f30c"></img>
+                    <img src="https://www.practostatic.com/fit/bade52edc7fb158bf627216bf96c2b881a97f30c" alt = "img"></img>
                     <h5 style={{color:"#079ac7"}}>VITAMINS AND SUPPLEMENTS</h5>
                     <h5>Eating Right to Build Immunity Againist Cold And Viral Infections</h5>
                     <p>Dr . Diana Borgio</p>
@@ -119,7 +121,7 @@ const Landingpage = () => {
             </div>
             <div className={styles.signup}>
                 <div style={{margin:"50px"}}>
-                    <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/footer-img.png"
+                    <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/footer-img.png" alt = "img"
                     style={{width:"330px"}}></img>
                 </div>
                 <div className={styles.download}>
@@ -138,8 +140,8 @@ const Landingpage = () => {
                         </div>
                     </div>
                     <div className={styles.google}>
-                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/google_play.png"></img>
-                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/apple_store.png"></img>
+                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/google_play.png" alt = "img"></img>
+                        <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/apple_store.png" alt = "img"></img>
                     </div>
                 </div>
             </div>
