@@ -1,15 +1,12 @@
-.heading {
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container p,
+.container h3{
+    margin: 1em 0;
 }
-.logo{
-    margin-left: 80px;
+
+.container h5{
+    margin:1.67em 0;
 }
-.user{
-    margin-right: 80px;
-}
+
 .content{
     padding-top: 30px;
     background-color:#F0F0F5 ;

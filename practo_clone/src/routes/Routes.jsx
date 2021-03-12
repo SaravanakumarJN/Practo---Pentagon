@@ -9,16 +9,20 @@ import {DoctorSearch} from '../components/doctorSearch/DoctorSearch'
 import { SpecialityResultPage } from '../pages/SpecialityResultPage/SpecialityResultPage'
 import { Navbar } from '../components/navbar/Navbar'
 import { Footer } from '../components/footer/Footer'
+import { LoginPage } from '../pages/loginPage/LoginPage'
 
 const Routes = () => {
     return (
         <Switch>
+            <Route exact path = "/login">
+                <LoginPage/>
+                <Footer/>
+            </Route>
             <Route exact path = "/">
+                <Navbar/>
                 <Landingpage/>
                 {/* <Bookingdetails/> */}
-                <Navbar/>
                 {/* <Landingpage/> */}
-                {/* <Bookingdetails/> */}
                 <Footer/>
             </Route>
             <Route exact path = "/doctors">
@@ -35,21 +39,13 @@ const Routes = () => {
                 <Navbar/>
                 <SpecialityResultPage/>
                 <Footer/>
-
             </Route>
             <Route exact path = "/appointment/:doctors_id/:time">
                 <Bookingdetails/> 
                 <Footer/>
             </Route>
-            <Route exact path = "/pharmacy"></Route>
-            <Route exact path = "/pharmacy">
-            </Route>
-            {/* <Route exact path = "/pharmacy">
-                <Pharmacy/>
-            </Route>
-            <Route path = "/pharmacy/categories/">
-                <PharmacyCategories/>
-            </Route> */}
+            
+  
         </Switch>
     )
 }

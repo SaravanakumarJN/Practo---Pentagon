@@ -1,9 +1,11 @@
 import React from 'react'
+import { shallowEqual, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
     const history = useHistory()
+    const {isLoggedIn, currentUser} = useSelector(state => state.authReducer, shallowEqual)
 
     return (
         <nav className = {styles.nav}>
@@ -54,7 +56,16 @@ const Navbar = () => {
                 Security & help
             </div>
             <div className = {styles.right}>
-                User
+                {
+                    isLoggedIn
+                    ? <strong>{currentUser.name}</strong>
+                    : <button
+                        className = {styles.login_btn}
+                        onClick = {() => history.push("/login")}
+                    >
+                        Login / Signup
+                    </button>
+                }
             </div>
         </nav>
     )

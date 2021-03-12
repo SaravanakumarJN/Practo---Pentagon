@@ -28,7 +28,6 @@ const SpecialityResultPage = () => {
         getDoctorsWithFilter(payload)
         .then((data) => {
             setDoctors([...data.data])
-            console.log(data)
         })
         .catch(err => console.log(err))
     }
