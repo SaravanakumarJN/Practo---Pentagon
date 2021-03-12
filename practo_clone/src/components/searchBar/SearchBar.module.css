@@ -71,4 +71,5 @@
 
 .speciality > span:hover{
     text-decoration: underline;
+    color:white;
 }

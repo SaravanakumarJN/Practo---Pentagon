@@ -19,8 +19,6 @@ const Routes = () => {
                 <Footer/>
             </Route>
             <Route exact path = "/">
-                <Landingpage/>
-                {/* <Bookingdetails/> */}
                 <Navbar/>
                 <Landingpage/>
                 <Footer/>
