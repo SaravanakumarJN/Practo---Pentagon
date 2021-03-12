@@ -229,6 +229,7 @@ const authSchema = new mongoose.Schema({
 
 const Auth = mongoose.model("authentication", authSchema)
 
+
 //post 
 app.post("/user/authentication", async(req, res) => {
     const {name, email, imageUrl, googleId} = req.body
@@ -249,6 +250,7 @@ app.post("/user/authentication", async(req, res) => {
     }
     
 })
+
 
 // app.get("/bookings" , async (req, res) =>{
 //     const slots = await Bookings.find({}).exec();
