@@ -5,7 +5,8 @@ const Landingpage = () => {
         <div>
             <div className={styles.topimage}>
                 <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/banner.png"
-                style={{height:"320px"}} alt="fdgf"></img>
+                style={{height:"320px",width:"100%"}} alt="fdgf"></img>
+
             </div>
             <div className={styles.neardoctor}>
                 <img src="https://www.practostatic.com/consumer-home/desktop/images/1597423628/find-doctors-2.png"

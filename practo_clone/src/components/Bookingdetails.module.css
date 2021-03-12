@@ -1,15 +1,12 @@
-.heading {
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container p,
+.container h3{
+    margin: 1em 0;
 }
-.logo{
-    margin-left: 80px;
+
+.container h5{
+    margin:1.67em 0;
 }
-.user{
-    margin-right: 80px;
-}
+
 .content{
     padding-top: 30px;
     background-color:#F0F0F5 ;
@@ -84,15 +81,14 @@
     font-size: 14px;
 }
 .confirm{
-    width: 100%;
     background-color: #199FD9;
-    display: flex;
-    margin: 15px 0;
-    align-items: center;
-    justify-content: center;
     color: white;
-    padding: 5px;
+    border:none;
+    outline:none;
     border-radius: 3px;
+    padding:10px 15px;
+    width:100%;
+    margin:30px 8px 20px;
 }
 .conditions{
     font-size: 12px;

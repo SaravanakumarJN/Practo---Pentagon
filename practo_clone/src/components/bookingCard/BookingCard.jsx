@@ -80,7 +80,7 @@ const BookingCard = ({doctors_id}) => {
   const [bookedSlots, setBookedSlots] = React.useState([]);
   const slotArray = [
     {
-      time : "9:30",
+      time : "09:30",
       timeStr : "09:30",
       type : 0
     },
@@ -110,13 +110,13 @@ const BookingCard = ({doctors_id}) => {
       type : 1
     },
     {
-      time : "1:00",
-      timeStr : "13:00",  
+      time : "13:00",
+      timeStr : "1:00",  
       type : 1
     },
     {
-      time : "1:30",
-      timeStr : "13:30",  
+      time : "13:30",
+      timeStr : "1:30",  
       type : 1
     },
     {
@@ -195,14 +195,14 @@ const BookingCard = ({doctors_id}) => {
 
   const handleBookSlot = (time) => {
     const dateTimeStr = date.substring(0, 11) + time+ ":00+05:30"
-    // const postObj = {
-    //   doctor_id : doctors_id,
-    //   name : "John Doe",
-    //   contact : "8425028144",
-    //   time : dateTimeStr
-    // }
-    // bookSlot(postObj)
-    history.push(`/appointment/${doctors_id}/${dateTimeStr}`)
+    const postObj = {
+      doctor_id : doctors_id,
+      name : "John Doe",
+      contact : "8425028144",
+      time : dateTimeStr
+    }
+    bookSlot(postObj)
+    // history.push(`/appointment/${doctors_id}/${dateTimeStr}`)
     
   }
 

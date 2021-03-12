@@ -1,10 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const uri = require("./uri");
+const cors = require('cors');
+const stripe = require('stripe')("sk_test_51ITniwLuzrELcYjAZlc55fGMQL8SQDAAeqN4smic3ZUMTvlWjhDQvsUQsEy2rTPI4aazIn8j8s6B2BZSG74XPNb600JHhUgpkB");
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 const connect = () =>{
     return mongoose.connect(uri , {
@@ -13,8 +17,6 @@ const connect = () =>{
         useUnifiedTopology: true
     })
 }
-
-
 
 const doctorsSchema = new mongoose.Schema({
     name: String,
@@ -36,6 +38,8 @@ const doctorsSchema = new mongoose.Schema({
 })
 
 const Doctor = mongoose.model("doctor", doctorsSchema)
+
+// ***************** Doctor Search ********************
 
 //get all doctors
 app.get("/doctors" , async (req, res) =>{
@@ -83,10 +87,12 @@ app.get("/doctors/:query/query", async(req, res) => {
     }).lean().exec()
     res.status(200).json({data : doctor})
 });
+
 //search none
 app.get("/doctors//query", async(req, res) => {
     res.status(200).json({data : []})
 })
+
 //get based on speciality
 app.get("/doctors/:speciality/speciality", async(req, res) => {
     const {speciality} = req.params
@@ -105,6 +111,7 @@ app.get("/doctors/:speciality/speciality", async(req, res) => {
     }).lean().exec()
     res.status(200).json({data : doctor})
 })
+
 //get individual item on click
 app.get("/doctors/:id/id", async(req, res) => {
     const {id} = req.params
@@ -112,6 +119,72 @@ app.get("/doctors/:id/id", async(req, res) => {
         id : id
     }).lean().exec()
     res.status(200).json({data : doctor})
+})
+
+app.get("/doctors/:id", async(req, res) =>{
+    const {id} = req.params;
+    const doctor = await Doctor.find({
+        "_id" : id
+    }).lean().exec()
+    res.status(200).json({data : doctor})
+})
+
+//filter by consulting fee
+app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
+    const {speciality, from, to} = req.params
+    const {lat, long} = req.query
+    const doctors = await Doctor.find({
+        $and : [
+            {
+                specialization : new RegExp(speciality, "i")
+            },
+            {
+                consulting_fee : {$gte : from}
+            },
+            {
+                consulting_fee : {$lte : to}
+            },
+            {
+                loc : {
+                    $near : {
+                        $geometry : {
+                            type : "Point",
+                            coordinates : [Number(lat), Number(long)]
+                        },
+                        $maxDistance : 400000
+                    }
+                }
+            }
+        ]
+    }).sort({consulting_fee : 1}).lean().exec()
+    res.status(200).json({data : doctors})
+})
+
+// ***************** Payment ********************
+
+//stripe integration
+app.post("/booking/payment", (req, res) => {
+    const {docData, token} = req.body
+    const idempotencyKey = uuidv4()
+
+    return stripe.customers.create({
+        email : token.email,
+        source : token.id
+    })
+    .then((customer) => {
+        // console.log(customer)
+        stripe.charges.create({
+            amount: docData.price * 100,
+            currency : "INR",
+            customer: customer.id,
+            receipt_email : token.email,
+            description : `Booked appointment with ${docData.name}`
+        }, {idempotencyKey : idempotencyKey},  function(err, charge) {
+          
+        })
+    })
+    .then((result) => res.status(200).json(result))
+    .catch((error) => console.log(error))
 })
 
 
@@ -150,12 +223,33 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
 const authSchema = new mongoose.Schema({
     name: String,
     email : String,
-    password : String,
-    phone : String
+    user_id : String,
+    image_url : String
 });
 
 const Auth = mongoose.model("authentication", authSchema)
 
+
+//post 
+app.post("/user/authentication", async(req, res) => {
+    const {name, email, imageUrl, googleId} = req.body
+    const userCheck = await Auth.find({user_id : googleId}).exec()
+    if(userCheck.length == 0){
+        const to_insert = {
+            name : name,
+            email : email,
+            user_id : googleId,
+            image_url : imageUrl
+        }
+        await Auth.insertMany([to_insert])
+        const userCheckConformation = await Auth.find({user_id : googleId}).exec()
+        res.status(200).json({data : userCheckConformation})
+    }
+    else{
+        res.status(200).json({data : userCheck})
+    }
+    
+})
 
 
 // app.get("/bookings" , async (req, res) =>{
