@@ -127,6 +127,8 @@ app.get("/doctors/:id", async(req, res) =>{
         "_id" : id
     }).lean().exec()
     res.status(200).json({data : doctor})
+
+});
 //filter by consulting fee
 app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
     const {speciality, from, to} = req.params
@@ -162,7 +164,7 @@ app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => 
 
 //stripe integration
 app.post("/booking/payment", (req, res) => {
-    const {doctor, token} = req.body
+    const {docData, token} = req.body
     const idempotencyKey = uuidv4()
 
     return stripe.customers.create({
@@ -170,13 +172,12 @@ app.post("/booking/payment", (req, res) => {
         source : token.id
     })
     .then((customer) => {
-        // console.log(customer)
         stripe.charges.create({
-            amount: doctor.price * 100,
+            amount: docData.price * 100,
             currency : "INR",
             customer: customer.id,
             receipt_email : token.email,
-            description : `Booked appointment with ${doctor.name}`
+            description : `Booked appointment with ${docData.name}`
         }, {idempotencyKey : idempotencyKey},  function(err, charge) {
           
         })
@@ -225,43 +226,7 @@ const authSchema = new mongoose.Schema({
     phone : String
 });
 
-const Auth = mongoose.model("authentication", authSchema)
-
-// app.get("/bookings" , async (req, res) =>{
-//     const slots = await Bookings.find({}).exec();
-//     res.status(200).json({data : slots});
-// });
-
-// app.post("/authentication", async(req, res) => {
-//     const user = await .create(req.body);
-//     res.status(201).json({data : user});
-// })
-
-// app.get("/doctors/:doctor_id/bookings", async(req, res) => {
-//     const id = req.params.doctor_id;
-//     const slots = await Bookings.find({doctor_id : id}).lean().exec();
-//     res.status(200).json({data : slots});
-// })
-
-
-
-// app.patch("/movies/:id", async(req, res) => {
-//     const id = req.params.id;
-//     const user = await Movie.findByIdAndUpdate(id, req.body);
-//     res.send(200).json({data : user});
-// })
-
-// app.delete("/movies/:id", async(req, res) => {
-//     const id = req.params.id;
-//     const user = await Movie.deleteOne({"_id" : id});
-//     res.send(200).json({data : user});
-// })
-
-// app.get("/movies/:id" , async (req, res) =>{
-//     const id = +req.params.id;
-//     const user = await Movie.find({"_id" : id}).exec();
-//     res.status(200).json({data : user});
-// })
+const Auth = mongoose.model("authentication", authSchema);
 
 const start = async() => {
     await connect();
@@ -270,4 +235,4 @@ const start = async() => {
     })
 }
 
-start();
+start()

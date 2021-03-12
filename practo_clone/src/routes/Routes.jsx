@@ -18,7 +18,7 @@ const Routes = () => {
                 {/* <Bookingdetails/> */}
                 <Navbar/>
                 {/* <Landingpage/> */}
-                <Bookingdetails/>
+                {/* <Bookingdetails/> */}
                 <Footer/>
             </Route>
             <Route exact path = "/doctors">

@@ -24,6 +24,7 @@ import { stripePayment } from '../utilities/axios'
 const Bookingdetails = () => {
     const {doctors_id, time} = useParams();
     const [docData, setDocData] = React.useState({});
+    const [email, setEmail] = React.useState("");
     React.useEffect(() => {
         getDocData(doctors_id)
         .then((res) => {
@@ -33,7 +34,7 @@ const Bookingdetails = () => {
     const makePayment = (token) => {
         const body = {
             token,
-            doctor
+            docData
         }
         stripePayment(body)
         .then(res => {
@@ -68,7 +69,7 @@ const Bookingdetails = () => {
                             </div>
                             <div className={styles.time}>
                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                <p>At <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>6:00PM</span></p>
+                                <p>At <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>{time.substring(11, 16)} {Number(time.substring(11, 13)) >= 12 ? 'PM' : 'AM'}</span></p>
                             </div>
                         </div>
                         <div className={styles.docData}>
@@ -109,14 +110,14 @@ const Bookingdetails = () => {
                         </div>
                         <div>
                             <p>Your Email<span style={{color:"red"}}>*</span></p>
-                            <input type="text" value={""} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
+                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
                         </div>
                         <div>
                             <StripeCheckout
                                 stripeKey = "pk_test_51ITniwLuzrELcYjAY5A3nHnhpdreI7d7ZzOlCqfqQSZM0L6ay3T1LhRaNuDNZ96jMEAJ9ZRn5QsCyaD87yD4pFxi00g4zrdqCF"
                                 token = {makePayment}
-                                name = {`Book appoinment with ${doctor.name}`}
-                                amount = {doctor.consulting_fee * 100}
+                                name = {`Book appoinment with ${docData.name}`}
+                                amount = {docData.consulting_fee * 100}
                                 currency = "INR"
                             >
                                 <button className = {styles.confirm}>Book Appointment</button>
