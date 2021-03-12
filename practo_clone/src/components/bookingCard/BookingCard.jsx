@@ -173,12 +173,11 @@ const BookingCard = ({doctors_id}) => {
   const handleBookedSlots = (data, newValue) =>{
     const dateStr = moment().day(newValue + 5).format();
     console.log(dateStr);
-    // console.log(Date.parse(dateStr)); 
     let slots = [];
 
     data?.map(item => {
       return item.time.substring(0, 11) === dateStr.substring(0, 11) 
-      ? slots.push(item.time.substring(11, 16)): null
+      ? slots.push(item.time.substring(11, 16)): null;
     })
     setBookedSlots(slots);
   }
@@ -242,8 +241,8 @@ const BookingCard = ({doctors_id}) => {
         </Tabs>
       </AppBar>
       {
-        arr.map(item => (
-          <TabPanel value={value} index={item} className={classes.tabPanel} key={item}>
+        arr.map(idx => (
+          <TabPanel value={value} index={idx} className={classes.tabPanel} key={idx}>
             <Box className={classes.slotsCont}>
               <div className={styles.slotsCont_time}>
                 <WbSunnyOutlinedIcon className={styles.icon} color="action"/>
@@ -252,8 +251,11 @@ const BookingCard = ({doctors_id}) => {
               <div className={styles.slotsCont_slots}>
                 {
                   slots.map(item => (
-                    item.type === 0 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
-                  ))
+                    item.type === 0 && !bookedSlots.includes(item.time) 
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                      value === 0 ? Number(date.substring(10, 12)) < Number(item.time.substring(0, 2)) ? "false" : "true"  : "false"
+                    }>{item.timeStr}</Button>
+                ))
                 }     
               </div>
             </Box>
