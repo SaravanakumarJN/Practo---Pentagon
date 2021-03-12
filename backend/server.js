@@ -222,7 +222,6 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
     res.status(200).json({data : slots});
 })
 
-
 // ************** Authentication **************
 const authSchema = new mongoose.Schema({
     name: String,
