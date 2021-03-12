@@ -5,6 +5,12 @@ import axios from 'axios'
 import {getDocData} from "../utils";
 import StripeCheckout from 'react-stripe-checkout'
 import { stripePayment } from '../utilities/axios'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import {bookSlot} from "../utils";
+import { useHistory } from "react-router-dom";
+
+
+
 
 
 // const doctor= {
@@ -24,7 +30,14 @@ import { stripePayment } from '../utilities/axios'
 const Bookingdetails = () => {
     const {doctors_id, time} = useParams();
     const [docData, setDocData] = React.useState({});
-    const [email, setEmail] = React.useState("");
+    const [phone, setPhone] = React.useState("");
+
+    const user = useSelector(state => state.authReducer.currentUser);
+    console.log(user);
+
+    const history = useHistory();
+
+
     React.useEffect(() => {
         getDocData(doctors_id)
         .then((res) => {
@@ -37,9 +50,18 @@ const Bookingdetails = () => {
             docData
         }
         stripePayment(body)
-        .then(res => {
-            console.log(res)
+        .then(() => {
+            const postObj = {
+                doctor_id : doctors_id,
+                name : user.name,
+                contact : phone,
+                time : time,
+                userId : user._id
+            }
+            bookSlot(postObj);
+            history.push("/");
         })
+        
     }
 
     return (
@@ -89,20 +111,20 @@ const Bookingdetails = () => {
                     <div className={styles.right}>
                         <div className={styles.patienthead}>
                             <h3 style={{color:"#414146"}}>Patient Details</h3>
-                            <h5>This in-clinic appointment is for:</h5>
-                            <h5>Please provide following information about Bharath Reddy:</h5>
+                            <h5>This in-clinic appointment is for: {user.name}</h5>
+                            <h5>Please provide following information about {user.name}:</h5>
                         </div>
                         <div>
                             <p>FullName<span style={{color:"red"}}>*</span></p>
-                            <input type="text" value={"Bharath Reddy"} placeholder="Enter Your FullName" className={styles.name}></input>
+                            <input type="text" value={user.name} placeholder="Enter Your FullName" className={styles.name}></input>
                         </div>
                         <div>
                             <p>Mobile<span style={{color:"red"}}>*</span></p>
-                            <input type="text" value={"9876543210"} className={styles.name} disabled></input>
+                            <input type="text" className={styles.name} value={phone}  onChange={(e) => setPhone(e.target.value)}   placeholder="Enter Mobile No."></input>
                         </div>
                         <div>
                             <p>Your Email<span style={{color:"red"}}>*</span></p>
-                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
+                            <input type="text" value={user.email} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
                         </div>
                         <div>
                             <StripeCheckout
@@ -116,7 +138,7 @@ const Bookingdetails = () => {
                             </StripeCheckout>
                         </div>
                         <div className={styles.conditions}>
-                            <p>1. Updates will be sent to +916303583383</p>
+                            <p>1. Updates will be sent to {user.email}</p>
                             <p>By booking this appointment, you agree to Practo’s<span style={{color:"#03a9f4"}}>Terms and Conditions.</span> </p>
                         </div>
                     </div>
