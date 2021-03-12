@@ -6,21 +6,20 @@ import {getDocData} from "../utils";
 import StripeCheckout from 'react-stripe-checkout'
 import { stripePayment } from '../utilities/axios'
 
-
-// const doctor= {
-//     name: "Dr. Vishnuvardhan Reddy Meedimale",
-//     specialization: "Pediatrician",
-//     experience: 26,
-//     city: "Hyderabad",
-//     clinic_name: "Apollo Cradle",
-//     consulting_fee: 700,
-//     likes: 73,
-//     image_url: "https://imagesx.practo.com/providers/6ea7e0f7-b534-48c7-8c57-7349a0220e60.jpg?i_type=t_100x100",
-//     id: 405,
-//     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-//     loc: { "type": "Point", "coordinates": [ 17.3501617, 78.5510938 ] },
-//     area: "LB Nagar"
-// }
+const docData = {
+    name: "Dr. Vishnuvardhan Reddy Meedimale",
+    specialization: "Pediatrician",
+    experience: 26,
+    city: "Hyderabad",
+    clinic_name: "Apollo Cradle",
+    consulting_fee: 700,
+    likes: 73,
+    image_url: "https://imagesx.practo.com/providers/6ea7e0f7-b534-48c7-8c57-7349a0220e60.jpg?i_type=t_100x100",
+    id: 405,
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    loc: { "type": "Point", "coordinates": [ 17.3501617, 78.5510938 ] },
+    area: "LB Nagar"
+}
 const Bookingdetails = () => {
     const {doctors_id, time} = useParams();
     const [docData, setDocData] = React.useState({});

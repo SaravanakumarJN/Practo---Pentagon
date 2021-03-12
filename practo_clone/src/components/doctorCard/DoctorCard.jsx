@@ -32,7 +32,7 @@ const DoctorCard = ({data}) => {
                 </div>
             </div>
             <div className = {styles.right}> 
-                <button onClick={handleBookingCard} className = {styles.book_btn}>Book Appointment<br/><span> No Booking Fee</span></button>
+                <button onClick={handleBookingCard} className = {styles.book_btn}>Book Appointment</button>
             </div>
             
         </div>
