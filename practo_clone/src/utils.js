@@ -7,4 +7,8 @@ const bookSlot = (body) => {
     return axios.post(`http://localhost:2233/bookings`, {...body})
 }
 
-export {getBookedSlots, bookSlot};
+const getDocData = (docId) => {
+    return axios.get(`http://localhost:2233/doctors/${docId}`)
+}
+
+export {getBookedSlots, bookSlot, getDocData};

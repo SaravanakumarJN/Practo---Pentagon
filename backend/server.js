@@ -121,6 +121,12 @@ app.get("/doctors/:id/id", async(req, res) => {
     res.status(200).json({data : doctor})
 })
 
+app.get("/doctors/:id", async(req, res) =>{
+    const {id} = req.params;
+    const doctor = await Doctor.find({
+        "_id" : id
+    }).lean().exec()
+    res.status(200).json({data : doctor})
 //filter by consulting fee
 app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
     const {speciality, from, to} = req.params
