@@ -37,7 +37,7 @@ const Bookingdetails = () => {
 
     const history = useHistory();
 
-
+console.log(time)
     React.useEffect(() => {
         getDocData(doctors_id)
         .then((res) => {
@@ -86,7 +86,7 @@ const Bookingdetails = () => {
                                 <p>At <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>{time.substring(11, 16)} {Number(time.substring(11, 13)) >= 12 ? 'PM' : 'AM'}</span></p>
                             </div>
                         </div>
-                        <div className={styles.docData}>
+                        <div className={styles.doctor}>
                             <div>
                             <img src={docData.image_url} style={{width:"130px"}}></img>
                             </div>
@@ -123,7 +123,7 @@ const Bookingdetails = () => {
                             <input type="text" className={styles.name} value={phone}  onChange={(e) => setPhone(e.target.value)}   placeholder="Enter Mobile No."></input>
                         </div>
                         <div>
-                            <p>Your Email<span style={{color:"red"}}>*</span></p>
+                            <p>Your Email</p>
                             <input type="text" value={user.email} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
                         </div>
                         <div>
