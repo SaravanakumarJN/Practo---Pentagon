@@ -121,6 +121,14 @@ app.get("/doctors/:id/id", async(req, res) => {
     res.status(200).json({data : doctor})
 })
 
+app.get("/doctors/:id", async(req, res) =>{
+    const {id} = req.params;
+    const doctor = await Doctor.find({
+        "_id" : id
+    }).lean().exec()
+    res.status(200).json({data : doctor})
+})
+
 //filter by consulting fee
 app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
     const {speciality, from, to} = req.params
@@ -156,7 +164,7 @@ app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => 
 
 //stripe integration
 app.post("/booking/payment", (req, res) => {
-    const {doctor, token} = req.body
+    const {docData, token} = req.body
     const idempotencyKey = uuidv4()
 
     return stripe.customers.create({
@@ -166,11 +174,11 @@ app.post("/booking/payment", (req, res) => {
     .then((customer) => {
         // console.log(customer)
         stripe.charges.create({
-            amount: doctor.price * 100,
+            amount: docData.price * 100,
             currency : "INR",
             customer: customer.id,
             receipt_email : token.email,
-            description : `Booked appointment with ${doctor.name}`
+            description : `Booked appointment with ${docData.name}`
         }, {idempotencyKey : idempotencyKey},  function(err, charge) {
           
         })
