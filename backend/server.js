@@ -196,7 +196,7 @@ const bookingSchema = new mongoose.Schema({
     },
     name : String,
     contact : String,
-    time : String
+    time : String,
 });
 
 const Bookings = mongoose.model("booking", bookingSchema)
@@ -216,7 +216,6 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
     const slots = await Bookings.find({doctor_id : id}).lean().exec();
     res.status(200).json({data : slots});
 })
-
 
 // ************** Authentication **************
 const authSchema = new mongoose.Schema({
