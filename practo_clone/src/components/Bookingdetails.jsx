@@ -23,6 +23,7 @@ const docData = {
 const Bookingdetails = () => {
     const {doctors_id, time} = useParams();
     const [docData, setDocData] = React.useState({});
+    const [email, setEmail] = React.useState("");
     React.useEffect(() => {
         getDocData(doctors_id)
         .then((res) => {
@@ -59,7 +60,7 @@ const Bookingdetails = () => {
                             </div>
                             <div className={styles.time}>
                                 <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                <p>At <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>6:00PM</span></p>
+                                <p>At <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>{time.substring(11, 16)} {Number(time.substring(11, 13)) >= 12 ? 'PM' : 'AM'}</span></p>
                             </div>
                         </div>
                         <div className={styles.docData}>
@@ -100,7 +101,7 @@ const Bookingdetails = () => {
                         </div>
                         <div>
                             <p>Your Email<span style={{color:"red"}}>*</span></p>
-                            <input type="text" value={""} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
+                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.name} placeholder="Enter Your Email ID (Optional)"></input>
                         </div>
                         <div>
                             <StripeCheckout

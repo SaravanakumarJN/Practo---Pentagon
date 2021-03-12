@@ -4,9 +4,9 @@
 
 body{
     min-width: 800px;
-}
+} 
 
 .container > :nth-child(2){
     padding-top: 80px;
     min-height: 60vh;
-}
+} 

@@ -23,7 +23,7 @@
     background-color: #ffffff;
     border: 1px solid rgb(231, 225, 225);
     margin: 0 20px;
-    height: 470px;
+    /* height: 470px; */
 }
 .right{
     width: 400px;
@@ -58,7 +58,7 @@
     color: #787887;
 }
 .hospital{
-    height: 120px;
+    /* height: 120px; */
     color: #787887;
     padding: 10px 15px;
     display: flex;

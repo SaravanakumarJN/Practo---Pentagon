@@ -21,6 +21,8 @@ const Routes = () => {
             <Route exact path = "/">
                 <Navbar/>
                 <Landingpage/>
+                {/* <Bookingdetails/> */}
+                {/* <Landingpage/> */}
                 <Footer/>
             </Route>
             <Route exact path = "/doctors">
@@ -42,15 +44,8 @@ const Routes = () => {
                 <Bookingdetails/> 
                 <Footer/>
             </Route>
-            <Route exact path = "/pharmacy"></Route>
-            <Route exact path = "/pharmacy">
-            </Route>
-            {/* <Route exact path = "/pharmacy">
-                <Pharmacy/>
-            </Route>
-            <Route path = "/pharmacy/categories/">
-                <PharmacyCategories/>
-            </Route> */}
+            
+  
         </Switch>
     )
 }
