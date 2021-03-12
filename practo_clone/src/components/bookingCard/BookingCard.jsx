@@ -171,13 +171,18 @@ const BookingCard = ({doctors_id}) => {
   const arr= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   const handleBookedSlots = (data, newValue) =>{
-    const dateStr = moment().day(newValue + 3).format();
+    const dateStr = moment().day(newValue + 5).format();
+    console.log(dateStr);
+    // console.log(Date.parse(dateStr)); 
     let slots = [];
-    data.map(item => {
-      return item.time.substring(0, 11) === dateStr.substring(0, 11) ? slots.push(item.time.substring(11, 16)): null
+
+    data?.map(item => {
+      return item.time.substring(0, 11) === dateStr.substring(0, 11) 
+      ? slots.push(item.time.substring(11, 16)): null
     })
     setBookedSlots(slots);
   }
+
 
   React.useState(() => {
     getBookedSlots(doctors_id)
@@ -189,20 +194,20 @@ const BookingCard = ({doctors_id}) => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    setDate(moment().day(newValue + 3).format());
+    setDate(moment().day(newValue + 5).format());
     handleBookedSlots(allSlots, newValue);
   };
 
   const handleBookSlot = (time) => {
     const dateTimeStr = date.substring(0, 11) + time+ ":00+05:30"
-    const postObj = {
-      doctor_id : doctors_id,
-      name : "John Doe",
-      contact : "8425028144",
-      time : dateTimeStr
-    }
-    bookSlot(postObj)
-    // history.push(`/appointment/${doctors_id}/${dateTimeStr}`)
+    // const postObj = {
+    //   doctor_id : doctors_id,
+    //   name : "John Doe",
+    //   contact : "8425028144",
+    //   time : dateTimeStr
+    // }
+    // bookSlot(postObj)
+    history.push(`/appointment/${doctors_id}/${dateTimeStr}`)
     
   }
 
@@ -220,20 +225,20 @@ const BookingCard = ({doctors_id}) => {
         >
           <Tab label="Today" {...a11yProps(0)}/>
           <Tab label="Tomorrow" {...a11yProps(1)} />
-          <Tab label={moment().day(5).format('ddd, MMM Do')} {...a11yProps(2)} />
-          <Tab label={moment().day(6).format('ddd, MMM Do')} {...a11yProps(3)} />
-          <Tab label={moment().day(7).format('ddd, MMM Do')} {...a11yProps(4)} />
-          <Tab label={moment().day(8).format('ddd, MMM Do')} {...a11yProps(5)} />
-          <Tab label={moment().day(9).format('ddd, MMM Do')} {...a11yProps(6)} />
-          <Tab label={moment().day(10).format('ddd, MMM Do')} {...a11yProps(7)} />
-          <Tab label={moment().day(11).format('ddd, MMM Do')} {...a11yProps(8)} />
-          <Tab label={moment().day(12).format('ddd, MMM Do')} {...a11yProps(9)} />
-          <Tab label={moment().day(13).format('ddd, MMM Do')} {...a11yProps(10)} />
-          <Tab label={moment().day(14).format('ddd, MMM Do')} {...a11yProps(11)} />
-          <Tab label={moment().day(15).format('ddd, MMM Do')} {...a11yProps(12)} />
-          <Tab label={moment().day(16).format('ddd, MMM Do')} {...a11yProps(13)} />
-          <Tab label={moment().day(17).format('ddd, MMM Do')} {...a11yProps(14)} />
-          <Tab label={moment().day(18).format('ddd, MMM Do')} {...a11yProps(15)} />
+          <Tab label={moment().day(7).format('ddd, MMM Do')} {...a11yProps(2)} />
+          <Tab label={moment().day(8).format('ddd, MMM Do')} {...a11yProps(3)} />
+          <Tab label={moment().day(9).format('ddd, MMM Do')} {...a11yProps(4)} />
+          <Tab label={moment().day(10).format('ddd, MMM Do')} {...a11yProps(5)} />
+          <Tab label={moment().day(11).format('ddd, MMM Do')} {...a11yProps(6)} />
+          <Tab label={moment().day(12).format('ddd, MMM Do')} {...a11yProps(7)} />
+          <Tab label={moment().day(13).format('ddd, MMM Do')} {...a11yProps(8)} />
+          <Tab label={moment().day(14).format('ddd, MMM Do')} {...a11yProps(9)} />
+          <Tab label={moment().day(15).format('ddd, MMM Do')} {...a11yProps(10)} />
+          <Tab label={moment().day(16).format('ddd, MMM Do')} {...a11yProps(11)} />
+          <Tab label={moment().day(17).format('ddd, MMM Do')} {...a11yProps(12)} />
+          <Tab label={moment().day(18).format('ddd, MMM Do')} {...a11yProps(13)} />
+          <Tab label={moment().day(19).format('ddd, MMM Do')} {...a11yProps(14)} />
+          <Tab label={moment().day(20).format('ddd, MMM Do')} {...a11yProps(15)} />
         </Tabs>
       </AppBar>
       {

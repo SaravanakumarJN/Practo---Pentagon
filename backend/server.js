@@ -127,7 +127,7 @@ app.get("/doctors/:id", async(req, res) =>{
         "_id" : id
     }).lean().exec()
     res.status(200).json({data : doctor})
-})
+});
 
 //filter by consulting fee
 app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
@@ -172,7 +172,6 @@ app.post("/booking/payment", (req, res) => {
         source : token.id
     })
     .then((customer) => {
-        // console.log(customer)
         stripe.charges.create({
             amount: docData.price * 100,
             currency : "INR",
@@ -226,6 +225,7 @@ const authSchema = new mongoose.Schema({
     user_id : String,
     image_url : String
 });
+
 
 const Auth = mongoose.model("authentication", authSchema)
 
@@ -295,4 +295,4 @@ const start = async() => {
     })
 }
 
-start();
+start()
