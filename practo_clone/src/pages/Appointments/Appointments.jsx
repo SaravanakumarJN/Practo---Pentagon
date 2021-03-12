@@ -2,8 +2,22 @@ import { Divider } from '@material-ui/core'
 import React from 'react'
 import { AppointmentsCard } from '../../components/Appointments/AppointmentsCard'
 import styles from "./Appointments.module.css"
+import {useSelector} from 'react-redux';
+import {getUserAppointments} from "../../utils"
+
 
 const Appointments = () => {
+    const user = useSelector(state => state.authReducer.currentUser);
+    
+    const [appointments ,setAppointments] = React.useState([]);
+
+    React.useEffect(() => {
+        getUserAppointments(user._id)
+        .then(res => {
+            console.log(res.data);
+        })
+    }, [])
+
     return (
         <div className={styles.background}>
         <div className={styles.appointmentCont}>
@@ -14,11 +28,11 @@ const Appointments = () => {
                 <div className={styles.top_right}>
                     <div className={styles.top_right_userDetails}>
                         <div className={styles.userDetails_left}>
-                            <img src="https://via.placeholder.com/50" alt=""/>
+                            <img src={user.image_url} alt=""/>
                         </div>
                         <div className={styles.userDetails_right}>
-                            <p><b>Mandar Satam</b></p>
-                            <p>+8425028144</p>
+                            <p><b>{user.name}</b></p>
+                            <p>{user.email}</p>
                         </div>
                     </div>
                 </div>

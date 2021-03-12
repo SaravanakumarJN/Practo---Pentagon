@@ -33,3 +33,21 @@
 .specialP{
     color: #787887;
 }
+
+.active{
+    width: 4em;
+    background-color: rgb(228, 255, 228);
+    padding: 1px;
+    border-radius: 3px;
+    text-align: center;
+    color: rgb(0, 206, 69);
+}
+
+.cancelled{
+    width: 5em;
+    background-color: #FEE9E5;
+    padding: 1px;
+    border-radius: 3px;
+    text-align: center;
+    color: #F8433F;
+}
