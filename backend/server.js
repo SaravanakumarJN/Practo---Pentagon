@@ -178,7 +178,7 @@ app.post("/booking/payment", (req, res) => {
             customer: customer.id,
             receipt_email : token.email,
             description : `Booked appointment with ${docData.name}`
-        }, {idempotencyKey : idempotencyKey},  function(err, charge) {
+        }, {idempotencyKey : idempotencyKey},  function(err, charge) {0
           
         })
     })
@@ -196,7 +196,12 @@ const bookingSchema = new mongoose.Schema({
     },
     name : String,
     contact : String,
-    time : String
+    time : String,
+    userId : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "authentication",
+        required : true
+    }
 });
 
 const Bookings = mongoose.model("booking", bookingSchema)

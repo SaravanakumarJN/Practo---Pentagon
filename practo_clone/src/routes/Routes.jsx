@@ -3,13 +3,12 @@ import {Switch, Route} from 'react-router-dom'
 import Bookingdetails from '../components/Bookingdetails'
 import Landingpage from '../components/Landingpage'
 import { DoctorResultPage } from '../pages/doctorsResultPage/DoctorsResultPage'
-import { Pharmacy } from '../pages/Pharmacy'
-import {PharmacyCategories} from "../pages/PharmacyCategories"
 import {DoctorSearch} from '../components/doctorSearch/DoctorSearch'
 import { SpecialityResultPage } from '../pages/SpecialityResultPage/SpecialityResultPage'
 import { Navbar } from '../components/navbar/Navbar'
 import { Footer } from '../components/footer/Footer'
 import { LoginPage } from '../pages/loginPage/LoginPage'
+import { Appointments } from '../pages/Appointments/Appointments'
 
 const Routes = () => {
     return (
@@ -41,7 +40,13 @@ const Routes = () => {
                 <Footer/>
             </Route>
             <Route exact path = "/appointment/:doctors_id/:time">
+                <Navbar/>
                 <Bookingdetails/> 
+                <Footer/>
+            </Route>
+            <Route exact path = "/appointment/:userId">
+                <Navbar/>
+                <Appointments/> 
                 <Footer/>
             </Route>
             
