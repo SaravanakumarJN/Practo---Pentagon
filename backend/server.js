@@ -127,6 +127,8 @@ app.get("/doctors/:id", async(req, res) =>{
         "_id" : id
     }).lean().exec()
     res.status(200).json({data : doctor})
+})
+
 //filter by consulting fee
 app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => {
     const {speciality, from, to} = req.params
@@ -162,7 +164,7 @@ app.get("/doctors/:speciality/speciality/:from/from/:to/to", async(req, res) => 
 
 //stripe integration
 app.post("/booking/payment", (req, res) => {
-    const {doctor, token} = req.body
+    const {docData, token} = req.body
     const idempotencyKey = uuidv4()
 
     return stripe.customers.create({
@@ -172,11 +174,11 @@ app.post("/booking/payment", (req, res) => {
     .then((customer) => {
         // console.log(customer)
         stripe.charges.create({
-            amount: doctor.price * 100,
+            amount: docData.price * 100,
             currency : "INR",
             customer: customer.id,
             receipt_email : token.email,
-            description : `Booked appointment with ${doctor.name}`
+            description : `Booked appointment with ${docData.name}`
         }, {idempotencyKey : idempotencyKey},  function(err, charge) {
           
         })
@@ -221,11 +223,32 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
 const authSchema = new mongoose.Schema({
     name: String,
     email : String,
-    password : String,
-    phone : String
+    user_id : String,
+    image_url : String
 });
 
 const Auth = mongoose.model("authentication", authSchema)
+
+//post 
+app.post("/user/authentication", async(req, res) => {
+    const {name, email, imageUrl, googleId} = req.body
+    const userCheck = await Auth.find({user_id : googleId}).exec()
+    if(userCheck.length == 0){
+        const to_insert = {
+            name : name,
+            email : email,
+            user_id : googleId,
+            image_url : imageUrl
+        }
+        await Auth.insertMany([to_insert])
+        const userCheckConformation = await Auth.find({user_id : googleId}).exec()
+        res.status(200).json({data : userCheckConformation})
+    }
+    else{
+        res.status(200).json({data : userCheck})
+    }
+    
+})
 
 // app.get("/bookings" , async (req, res) =>{
 //     const slots = await Bookings.find({}).exec();

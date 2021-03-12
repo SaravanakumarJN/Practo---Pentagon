@@ -33,7 +33,7 @@ const Bookingdetails = () => {
     const makePayment = (token) => {
         const body = {
             token,
-            doctor
+            docData
         }
         stripePayment(body)
         .then(res => {
@@ -42,15 +42,7 @@ const Bookingdetails = () => {
     }
 
     return (
-        <div>
-            <div className={styles.heading}>
-                <div className={styles.logo}>
-                    <img src="https://nav.practo.com/9.5.5/consumer/images/practo.svg" style={{height:"25px"}} alt="practo logo"></img>
-                </div>
-                <div className={styles.user}>
-                    Bharath Reddy  v
-                </div>
-            </div>
+        <div className = {styles.container}>
             <div className={styles.content}>
                 <div className={styles.form}>
                     <div className={styles.left}>
@@ -115,8 +107,8 @@ const Bookingdetails = () => {
                             <StripeCheckout
                                 stripeKey = "pk_test_51ITniwLuzrELcYjAY5A3nHnhpdreI7d7ZzOlCqfqQSZM0L6ay3T1LhRaNuDNZ96jMEAJ9ZRn5QsCyaD87yD4pFxi00g4zrdqCF"
                                 token = {makePayment}
-                                name = {`Book appoinment with ${doctor.name}`}
-                                amount = {doctor.consulting_fee * 100}
+                                name = {`Book appoinment with ${docData.name}`}
+                                amount = {docData.consulting_fee * 100}
                                 currency = "INR"
                             >
                                 <button className = {styles.confirm}>Book Appointment</button>

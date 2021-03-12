@@ -1,8 +1,10 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { authReducer } from "./auth/reducer";
 import { doctorsReducer } from "./doctorSearch/reducer";
 
 const rootReducer = combineReducers({
-    doctorsReducer : doctorsReducer
+    doctorsReducer : doctorsReducer,
+    authReducer : authReducer
 }) 
 
 const customThunks = (store) => (next) => (action) => {

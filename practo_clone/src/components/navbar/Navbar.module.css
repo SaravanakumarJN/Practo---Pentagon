@@ -40,3 +40,19 @@
     font-size: 15px;
     cursor: pointer;
 }
+
+.login_btn{
+    border:1px solid #b3b3b3;
+    color : #999999;
+    background-color: transparent;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+    padding: 7px 10px;
+    margin-top: -10px;
+}
+
+.login_btn:hover{
+    border:1px solid #32B7DF;
+    color : #32B7DF;
+}
