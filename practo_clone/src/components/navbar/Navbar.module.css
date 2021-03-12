@@ -6,6 +6,7 @@
     padding:20px 2.5% 18px;
     border-bottom: 1px solid #F0F0F5;
     background-color: white;
+    min-width: 800px;
 }
 
 .nav img{
@@ -55,4 +56,20 @@
 .login_btn:hover{
     border:1px solid #32B7DF;
     color : #32B7DF;
+}
+
+@media screen and (max-width: 860px) {
+    .left{
+        flex:18%
+    }
+    .nav{
+        flex-wrap: wrap;
+    }
+    .flex_grow{
+        flex-grow: 0;
+    }
+    .right{
+        flex:30%;
+        text-align: center;
+    }
 }

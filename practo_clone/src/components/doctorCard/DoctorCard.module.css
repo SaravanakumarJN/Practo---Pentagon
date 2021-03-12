@@ -81,13 +81,10 @@
     background-color: #2FBEF0;
     color: white;
     width:200px;
-    padding: 6px;
+    padding: 8px;
     border-radius: 6px;
     font-weight: 600;
-}
-
-.book_btn > span{
-    font-size: 11px;
+    font-size: 16px;
 }
 
 

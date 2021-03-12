@@ -1,49 +1,29 @@
 import React from 'react'
 import styles from "./Bookingdetails.module.css"
 import { useParams } from 'react-router'
-import axios from 'axios'
 import {getDocData} from "../utils";
 import StripeCheckout from 'react-stripe-checkout'
 import { stripePayment } from '../utilities/axios'
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import {useSelector} from 'react-redux';
 import {bookSlot} from "../utils";
 import { useHistory } from "react-router-dom";
 
-
-
-
-
-// const doctor= {
-//     name: "Dr. Vishnuvardhan Reddy Meedimale",
-//     specialization: "Pediatrician",
-//     experience: 26,
-//     city: "Hyderabad",
-//     clinic_name: "Apollo Cradle",
-//     consulting_fee: 700,
-//     likes: 73,
-//     image_url: "https://imagesx.practo.com/providers/6ea7e0f7-b534-48c7-8c57-7349a0220e60.jpg?i_type=t_100x100",
-//     id: 405,
-//     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-//     loc: { "type": "Point", "coordinates": [ 17.3501617, 78.5510938 ] },
-//     area: "LB Nagar"
-// }
 const Bookingdetails = () => {
     const {doctors_id, time} = useParams();
     const [docData, setDocData] = React.useState({});
     const [phone, setPhone] = React.useState("");
 
     const user = useSelector(state => state.authReducer.currentUser);
-    console.log(user);
 
     const history = useHistory();
 
-console.log(time)
     React.useEffect(() => {
         getDocData(doctors_id)
         .then((res) => {
             setDocData(res.data.data[0]);
         })
     }, [])
+
     const makePayment = (token) => {
         const body = {
             token,
@@ -61,7 +41,6 @@ console.log(time)
             bookSlot(postObj);
             history.push("/");
         })
-        
     }
 
     return (
@@ -88,7 +67,7 @@ console.log(time)
                         </div>
                         <div className={styles.doctor}>
                             <div>
-                            <img src={docData.image_url} style={{width:"130px"}}></img>
+                            <img src={docData.image_url} style={{width:"130px"}} alt = "avatar"></img>
                             </div>
                             <div style={{marginLeft:"20px"}}>
                                 <h3>{docData.name}</h3>
@@ -99,7 +78,7 @@ console.log(time)
                         <div className={styles.hospital}>
                             <div>
                                 <img src="https://revcycleintelligence.com/images/site/article_headers/_normal/hospital%2C_green.jpg"
-                                style={{width:"130px"}}></img>
+                                style={{width:"130px"}} alt = "hospital img"></img>
                             </div>
                             <div style={{marginLeft:"20px"}}>
                                 <h3>{docData.clinic_name}</h3>

@@ -23,3 +23,9 @@
     color: white;
     margin: 15px 0 30px;
 }
+
+@media screen and (max-width: 860px) {
+    .banner{
+        background-attachment: scroll;
+    }
+}

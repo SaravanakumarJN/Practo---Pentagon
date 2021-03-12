@@ -8,15 +8,12 @@
 }
 
 .content{
-    padding-top: 30px;
-    background-color:#F0F0F5 ;
-    height: 100vh;
+    margin:40px 0;
 }
 .form{
     display: flex;
-    width: 1000px;
     margin: auto;
-    /* justify-content: space-between; */
+    justify-content: center;
 }
 .left{
     width: 450px;
@@ -92,4 +89,12 @@
 }
 .conditions{
     font-size: 12px;
+}
+
+@media screen and (max-width: 860px) {
+    .form{
+        flex-direction: column;
+        width:450px;
+        margin: auto;
+    }
 }
