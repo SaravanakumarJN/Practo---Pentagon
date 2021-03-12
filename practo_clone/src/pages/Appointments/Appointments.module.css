@@ -1,0 +1,91 @@
+.background{
+    background-color: #F1F0F5;
+}
+.appointmentCont{
+    width: 90%;
+    margin: 5em auto;
+    background-color: white;
+    color: #414146;
+}
+
+.top{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;   
+}
+
+.top p{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.top_left{
+    min-width: 15em;   
+}
+
+.top_left h3{
+    margin: 1.5em;
+}
+
+.top_right{
+    padding: 1em;
+    
+    width: 100%;
+}
+
+.top_right_userDetails{
+    display: flex;
+}
+
+.userDetails_right{
+    margin-left: 1em;
+}
+
+.userDetails_right p{
+    margin: 5px;
+}
+
+
+.main{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+    
+}
+
+.main_left{
+    min-width: 15em;  
+}
+
+.main_left p{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.main_right{
+    padding: 1em;
+    width: 100%;
+    height: 25em;
+    background-color: #F1F0F5;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.menu_item{
+    width: 100%;
+    
+}
+
+.menu_item p {
+    margin: 1em;
+}
+
+.active{
+    width: 100%;
+    border-left: 6px solid blue;
+}
+
+.active p{
+    margin: 1em;
+    font-weight: 900;
+}
+

@@ -1,0 +1,35 @@
+.detailCont{
+    width: 98%;
+    display: flex;
+    padding: 1em;
+    background-color: white;
+    overflow: auto;
+    margin-top: 0.5em;
+}
+
+.detailCont p{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.date{
+    padding: 0.5em;
+    background-color: #F1F0F5;
+}
+
+.userDetails{
+    flex-grow: 1;
+    padding-left: 1em;
+}
+
+.userDetails p {
+    margin: 3px 0;
+}
+
+.action{
+    margin-top: 1em;
+}
+
+.specialP{
+    color: #787887;
+}
