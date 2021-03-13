@@ -6,7 +6,7 @@ Practo provides a platform that helps consumers with all their healthcare requir
 - Dynamic Search for doctors/clinic/speciality 
 - Get search results based on user location
 - Book an appointment based on slot availability of doctors
-- Making payment and confirm booking
+- Make payment and confirm booking
 - Get user booking history from user drive.
 
 ## Technology Stack
@@ -19,7 +19,7 @@ Practo provides a platform that helps consumers with all their healthcare requir
 - MongoDB
 - Mongo Atlas
 
-## Libraries and API
+## Libraries and API used
 - React
 - React redux
 - Material UI
@@ -28,3 +28,36 @@ Practo provides a platform that helps consumers with all their healthcare requir
 - Stripe
 - React Google Login
 - MapmyIndia Api
+
+## Steps to install the project
+### 1. Basic Software Installations
+- Git
+- VS code
+- Node js
+- MongoDB
+- Nodemon
+
+### 2. Clone the repository into local machine
+- In terminal, navigate to folder in which you need the clone and run `git clone https://github.com/SaravanakumarJN/Practo---Pentagon.git`
+
+### 3. NPM package installations
+- Open the clonned repository,
+    - Navigate to practo_clone folder and run `npm install` in terminal
+    - Navigate to backend folder and run `npm install` in terminal
+ 
+### 4. Run application
+- Before running the application, kill the applications currently running on port 3000 (for frontend) and port 2233 (for backend)
+- Open the clonned repository,
+    - Navigate to backend folder and run `nodemon server.js`in terminal
+    - Navigate to practo_clone folder and run `npm start` in terminal
+- Your application is now running on `http://localhost:3000/`
+
+
+## Team Members
+- [D Bharathkumar Reddy](https://github.com/DBharathkumarReddy)
+- [Mandar Satam](https://github.com/mandarsatam)
+- [Saravanakumar J N](https://github.com/SaravanakumarJN)
+
+
+
+
