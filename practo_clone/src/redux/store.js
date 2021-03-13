@@ -13,7 +13,7 @@ const customThunks = (store) => (next) => (action) => {
   
 const composedEnhancer = compose(
     applyMiddleware(customThunks),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (a) => a
 );
 
 const store = createStore(rootReducer, composedEnhancer);
