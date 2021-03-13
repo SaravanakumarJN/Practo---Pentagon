@@ -35,7 +35,7 @@ Practo provides a platform that helps consumers with all their healthcare requir
 - VS code
 - Node js
 - MongoDB
-- Nodemon
+- Nodemon (global npm package)
 
 ### 2. Clone the repository into local machine
 - In terminal, navigate to folder in which you need the clone and run `git clone https://github.com/SaravanakumarJN/Practo---Pentagon.git`
