@@ -14,7 +14,6 @@ const Appointments = () => {
     React.useEffect(() => {
         getUserAppointments(user._id)
         .then(res => {
-            console.log(res.data.data);
             setAppointments(res.data.data);
         })
     }, [appointments])
@@ -65,7 +64,7 @@ const Appointments = () => {
                 <div className={styles.main_right}>
                    {
                         appointments?.map(appt => (
-                            <AppointmentsCard doctorData={appt.doctor_id} time ={appt.time} id={appt._id} key={appt._id}/>
+                            <AppointmentsCard doctorData={appt.doctor_id} time ={appt.time} id={appt._id} status ={appt.status} key={appt._id}/>
                         ))
                     }
                 </div>

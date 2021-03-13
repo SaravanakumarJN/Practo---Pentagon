@@ -30,14 +30,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AppointmentsCard = ({doctorData, time, id}) => {
+const AppointmentsCard = ({doctorData, time, id, status}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
   };
 
@@ -78,19 +77,28 @@ const AppointmentsCard = ({doctorData, time, id}) => {
         <p className={styles.specialP}>{moment(time).format('ddd, MMM Do')}</p>
         <p className={styles.specialP}>{doctorData.clinic}</p>
         <div className={styles.active}>
-          <p>Active</p>
+          {
+            status === true &&
+            <p>Active</p>
+          }
         </div>
         <div className={styles.cancelled}>
-          <p>Cancelled</p>
+          {
+            status === false &&
+            <p>Cancelled</p>
+          }
         </div>
       </div>
       <div className={styles.action}> 
-        <Button variant="outlined" color="primary" style={{marginRight: "1em"}}>
+        {/* <Button variant="outlined" color="primary" style={{marginRight: "1em"}}>
           View Details
-        </Button>
-        <Button variant="outlined" color="secondary" onClick={handleCancel}>
-          Cancel
-        </Button>
+        </Button> */}
+        {
+          status === true &&
+          <Button variant="outlined" color="secondary" onClick={handleCancel}>
+            Cancel
+          </Button>
+        }
       </div>
       <Dialog
           open={dialogDelete}
@@ -116,7 +124,7 @@ const AppointmentsCard = ({doctorData, time, id}) => {
       </Dialog>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
-          This is a success message!
+          Appointment Cancelled
         </Alert>
       </Snackbar>
     </div>

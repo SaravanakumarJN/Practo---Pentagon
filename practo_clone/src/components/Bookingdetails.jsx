@@ -7,6 +7,7 @@ import { stripePayment } from '../utilities/axios'
 import {useSelector} from 'react-redux';
 import {bookSlot} from "../utils";
 import { useHistory } from "react-router-dom";
+import moment from 'moment';
 
 const Bookingdetails = () => {
     const {doctors_id, time} = useParams();
@@ -57,7 +58,7 @@ const Bookingdetails = () => {
                             <div>
                                 <div className={styles.date}>
                                 <i class="fa fa-calendar-o" aria-hidden="true" style={{marginRight:"10px"}}></i>
-                                <p>On <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>March 11</span></p>
+                                <p>On <span style={{fontSize:"16px",fontWeight:"700",color: "#414146"}}>{moment(time).format("MMMM Do")}</span></p>
                                 </div>
                                 <h5 style={{marginTop:"-10px",color:"#14bef0"}}>Change Date & Time</h5>
                             </div>
