@@ -1,5 +1,5 @@
 import axios from "axios"
-import { LOGIN_ERROR_HANDLING, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionType"
+import { LOGIN_ERROR_HANDLING, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_USER } from "./actionType"
 
 const login_request = () => {
     return{
@@ -26,6 +26,12 @@ const login_error_handling = () => {
     }
 }
 
+const logout_user = () => {
+    return{
+        type : LOGOUT_USER
+    }
+}
+
 const login_performer = (payload) => (dispatch) => {
     dispatch(login_request())
     return axios.post(`http://localhost:2233/user/authentication`, {
@@ -40,4 +46,4 @@ const login_performer = (payload) => (dispatch) => {
     })
 }
 
-export {login_performer, login_error_handling}
+export {login_performer, login_error_handling, logout_user}

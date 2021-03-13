@@ -249,8 +249,8 @@ const BookingCard = ({doctors_id}) => {
                 {
                   slots.map(item => (
                     item.type === 0 && !bookedSlots.includes(item.time) 
-                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
-                      value === 0 ? Number(date.substring(10, 12)) < Number(item.time.substring(0, 2)) ? "false" : "true"  : "false"
+                    && <Button variant="outlined" className={classes.slotItem} key={Math.random()*10} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                      value === 0 ? Number(date.substring(10, 12)) < Number(item.time.substring(0, 2)) ? false : true  : false
                     }>{item.timeStr}</Button>
                   
                 ))
