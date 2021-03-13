@@ -197,7 +197,7 @@ const bookingSchema = new mongoose.Schema({
     name : String,
     contact : String,
     time : String,
-    status : Boolean,
+    status:Boolean,
     userId : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "authentication",
@@ -208,7 +208,7 @@ const bookingSchema = new mongoose.Schema({
 const Bookings = mongoose.model("booking", bookingSchema)
 
 app.get("/bookings" , async (req, res) =>{
-    const slots = await Bookings.find({}).exec();
+    const slots = await Bookings.find({status : true}).exec();
     res.status(200).json({data : slots});
 });
 
@@ -234,11 +234,12 @@ app.get("/appointments/:id",async(req,res)=>{
     res.status(200).send({data: appointments})
 })
 
-// app.patch("/appointments/:id",async(req,res)=>{
-//     const id = req.params.id;
-//     const appoint = await Bookings.findByIdAndUpdate({_id:id}, req.body);
-//     res.status(200).send({data : appoint});
-// })
+
+app.patch("/appointments/:id",async(req,res)=>{
+    const id = req.params.id;
+    const appoint = await Bookings.findByIdAndUpdate(id,req.body,{new:true});
+    res.status(200).send({data:appoint})
+})
 
 // ************** Authentication **************
 const authSchema = new mongoose.Schema({
