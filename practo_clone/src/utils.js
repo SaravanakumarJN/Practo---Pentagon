@@ -20,7 +20,7 @@ const getIndvDocData = (docId) => {
 }
 
 const cancelAppointment = (apptId) => {
-    return axios.delete(`http://localhost:2233/appointments/${apptId}`)
+    return axios.patch(`http://localhost:2233/appointments/${apptId}`, {status : false})
 }
 
 

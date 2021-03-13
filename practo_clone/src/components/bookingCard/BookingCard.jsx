@@ -188,13 +188,14 @@ const BookingCard = ({doctors_id}) => {
     getBookedSlots(doctors_id)
     .then(res => {
       setAllSlots(res.data.data);
-      handleBookedSlots(res.data.data)
+      handleBookedSlots(res.data.data);
+      console.log(res.data.data);
     })
   }, [])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    setDate(moment().day(newValue + 5).format());
+    setDate(moment().add(newValue, "days").format());
     handleBookedSlots(allSlots, newValue);
   };
 
