@@ -3,7 +3,7 @@ import React from 'react'
 import { AppointmentsCard } from '../../components/Appointments/AppointmentsCard'
 import styles from "./Appointments.module.css"
 import {useSelector} from 'react-redux';
-import {getUserAppointments} from "../../utils"
+import {getUserAppointments, getIndvDocData} from "../../utils"
 
 
 const Appointments = () => {
@@ -14,9 +14,10 @@ const Appointments = () => {
     React.useEffect(() => {
         getUserAppointments(user._id)
         .then(res => {
-            console.log(res.data);
+            console.log(res.data.data);
+            setAppointments(res.data.data);
         })
-    }, [])
+    }, [appointments])
 
     return (
         <div className={styles.background}>
@@ -62,9 +63,11 @@ const Appointments = () => {
                     <Divider/>
                 </div>
                 <div className={styles.main_right}>
-                    <AppointmentsCard/>
-                    <AppointmentsCard/>
-                    <AppointmentsCard/>
+                   {
+                        appointments?.map(appt => (
+                            <AppointmentsCard doctorData={appt.doctor_id} time ={appt.time} id={appt._id} key={appt._id}/>
+                        ))
+                    }
                 </div>
             </div>
         </div>            

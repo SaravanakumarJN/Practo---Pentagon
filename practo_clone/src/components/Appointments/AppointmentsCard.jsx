@@ -1,22 +1,82 @@
 import React from 'react'
 import styles from "./AppointmentsCard.module.css"
 import Button from '@material-ui/core/Button';
+import moment from "moment";
+import {cancelAppointment} from "../../utils"
+import DeleteIcon from '@material-ui/icons/Delete';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import Typography from '@material-ui/core/Typography';
+import { Divider, Paper } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 
-const AppointmentsCard = () => {
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
+
+const AppointmentsCard = ({doctorData, time, id}) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const [dialogDelete, setDeleteDialog] = React.useState(false);
+
+  const handleDeleteDialogOpen = () => {
+    setDeleteDialog(true);
+  }
+
+  const handleDeleteDialogClose = () => {
+      setDeleteDialog(false);
+  }
+
+  const handleCancel = () => {
+    console.log(id);
+    handleDeleteDialogOpen();
+  }
+
+
+  const handleConfirmCancel= () => {
+    setDeleteDialog(false);
+    setOpen(true);
+    cancelAppointment(id)
+    .then(res => {
+      console.log(res.data);
+    })
+}
 
 
   return (
     <div className={styles.detailCont}>
       <div className={styles.date}>
-          <h3>10</h3>
-          <h5 className={styles.specialP}>MAR</h5>
+          <h3>{moment(time).format('D')}</h3>
+          <h5 className={styles.specialP}>{moment(time).format('MMM')}</h5>
       </div>
       <div className={styles.userDetails}>
-        <p><b>Dr. Sunny Soni</b></p>
-        <p className={styles.specialP}>Wednesday, 12:55 PM</p>
-        <p className={styles.specialP}>Aesthetic, Dental Clinic</p>
+        <p><b>{doctorData.name}</b></p>
+        <p className={styles.specialP}>{moment(time).format('ddd, MMM Do')}</p>
+        <p className={styles.specialP}>{doctorData.clinic}</p>
         <div className={styles.active}>
           <p>Active</p>
         </div>
@@ -28,10 +88,37 @@ const AppointmentsCard = () => {
         <Button variant="outlined" color="primary" style={{marginRight: "1em"}}>
           View Details
         </Button>
-        <Button variant="outlined" color="secondary">
+        <Button variant="outlined" color="secondary" onClick={handleCancel}>
           Cancel
         </Button>
       </div>
+      <Dialog
+          open={dialogDelete}
+          onClose={handleDeleteDialogClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+      >
+          <DialogTitle id="alert-dialog-title">
+              <ErrorOutlineIcon/>
+              <Typography variant="subtitle1">
+                  Are you sure you want to delete?
+              </Typography>
+          </DialogTitle>
+          <Divider/>
+          <DialogActions>
+          <Button onClick={handleDeleteDialogClose} variant="outlined">
+              Cancel
+          </Button>
+          <Button color="secondary" variant="contained" onClick={handleConfirmCancel}>
+              Delete
+          </Button>
+          </DialogActions>
+      </Dialog>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          This is a success message!
+        </Alert>
+      </Snackbar>
     </div>
   )
 }
