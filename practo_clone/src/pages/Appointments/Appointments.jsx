@@ -2,8 +2,23 @@ import { Divider } from '@material-ui/core'
 import React from 'react'
 import { AppointmentsCard } from '../../components/Appointments/AppointmentsCard'
 import styles from "./Appointments.module.css"
+import {useSelector} from 'react-redux';
+import {getUserAppointments, getIndvDocData} from "../../utils"
+
 
 const Appointments = () => {
+    const user = useSelector(state => state.authReducer.currentUser);
+    
+    const [appointments ,setAppointments] = React.useState([]);
+
+    React.useEffect(() => {
+        getUserAppointments(user._id)
+        .then(res => {
+            console.log(res.data.data);
+            setAppointments(res.data.data);
+        })
+    }, [appointments])
+
     return (
         <div className={styles.background}>
         <div className={styles.appointmentCont}>
@@ -14,11 +29,11 @@ const Appointments = () => {
                 <div className={styles.top_right}>
                     <div className={styles.top_right_userDetails}>
                         <div className={styles.userDetails_left}>
-                            <img src="https://via.placeholder.com/50" alt=""/>
+                            <img src={user.image_url} alt=""/>
                         </div>
                         <div className={styles.userDetails_right}>
-                            <p><b>Mandar Satam</b></p>
-                            <p>+8425028144</p>
+                            <p><b>{user.name}</b></p>
+                            <p>{user.email}</p>
                         </div>
                     </div>
                 </div>
@@ -48,9 +63,11 @@ const Appointments = () => {
                     <Divider/>
                 </div>
                 <div className={styles.main_right}>
-                    <AppointmentsCard/>
-                    <AppointmentsCard/>
-                    <AppointmentsCard/>
+                   {
+                        appointments?.map(appt => (
+                            <AppointmentsCard doctorData={appt.doctor_id} time ={appt.time} id={appt._id} key={appt._id}/>
+                        ))
+                    }
                 </div>
             </div>
         </div>            

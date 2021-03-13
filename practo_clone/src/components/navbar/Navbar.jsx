@@ -15,6 +15,10 @@ const Navbar = () => {
         dispatch(logout_user())
     }
 
+    const handleDrive = () => {
+        history.push("/appointments")
+    }
+
     return (
         <nav className = {styles.nav}>
             <div 
@@ -71,7 +75,7 @@ const Navbar = () => {
                         <div
                             className = {styles.profile_dropdown}
                         >
-                            <div>Your Drive</div>
+                            <div onClick = {handleDrive}>Your Drive</div>
                             <div onClick = {handleLogout}>Logout</div>
                         </div>
                     </div>

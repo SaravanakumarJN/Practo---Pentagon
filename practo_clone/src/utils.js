@@ -11,4 +11,17 @@ const getDocData = (docId) => {
     return axios.get(`http://localhost:2233/doctors/${docId}`)
 }
 
-export {getBookedSlots, bookSlot, getDocData};
+const getUserAppointments = (userId) => {
+    return axios.get(`http://localhost:2233/appointments/${userId}`)
+}
+
+const getIndvDocData = (docId) => {
+    return axios.get(`http://localhost:2233/doctors/${docId}`)
+}
+
+const cancelAppointment = (apptId) => {
+    return axios.delete(`http://localhost:2233/appointments/${apptId}`)
+}
+
+
+export {getBookedSlots, bookSlot, getDocData, getUserAppointments, getIndvDocData, cancelAppointment};
