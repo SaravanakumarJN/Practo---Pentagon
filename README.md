@@ -1,4 +1,4 @@
-## Practo 
+# Practo :hospital:
 Practo provides a platform that helps consumers with all their healthcare requirements – from finding the healthcare provider to booking an appointment, online doctor consultation, getting their tests done and even ordering medicines.
 
 ## Features Built
