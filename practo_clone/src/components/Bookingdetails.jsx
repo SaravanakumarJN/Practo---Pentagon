@@ -36,7 +36,7 @@ const Bookingdetails = () => {
                 name : user.name,
                 contact : phone,
                 time : time,
-                status:true,
+                status : true,
                 userId : user._id
             }
             bookSlot(postObj);

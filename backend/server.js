@@ -208,7 +208,7 @@ const bookingSchema = new mongoose.Schema({
 const Bookings = mongoose.model("booking", bookingSchema)
 
 app.get("/bookings" , async (req, res) =>{
-    const slots = await Bookings.find({}).exec();
+    const slots = await Bookings.find({status : true}).exec();
     res.status(200).json({data : slots});
 });
 
@@ -229,9 +229,11 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
 
 app.get("/appointments/:id",async(req,res)=>{
     const id = req.params.id;
-    const appointments= await Bookings.find({userId:id}).lean().exec();
-    res.status(200).send({data:appointments})
+    const appointments= await Bookings.find({userId:id}).populate("doctor_id")
+    .lean().exec();
+    res.status(200).send({data: appointments})
 })
+
 
 app.patch("/appointments/:id",async(req,res)=>{
     const id = req.params.id;
@@ -244,7 +246,8 @@ const authSchema = new mongoose.Schema({
     name: String,
     email : String,
     user_id : String,
-    image_url : String
+    image_url : String,
+    cancelled_appointments : Array
 });
 
 
@@ -270,6 +273,20 @@ app.post("/user/authentication", async(req, res) => {
         res.status(200).json({data : userCheck})
     }
     
+})
+
+
+
+
+
+
+
+// ****************Change by Mandar *********************
+
+app.delete("/appointments/:id",async(req,res)=>{
+    const id = req.params.id;
+    const appoint = await Bookings.findByIdAndDelete({_id:id});
+    res.status(200).send({data : appoint});
 })
 
 

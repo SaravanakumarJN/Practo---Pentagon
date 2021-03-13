@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+  // console.log(moment().day(7).format('ddd, MMM Do'));
 
   return (
     <div
@@ -172,8 +173,7 @@ const BookingCard = ({doctors_id}) => {
   const arr= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   const handleBookedSlots = (data, newValue) =>{
-    const dateStr = moment().day(newValue + 5).format();
-    console.log(dateStr);
+    const dateStr = moment().add(newValue, "days").format();
     let slots = [];
 
     data?.map(item => {
@@ -226,20 +226,20 @@ const BookingCard = ({doctors_id}) => {
         >
           <Tab label="Today" {...a11yProps(0)}/>
           <Tab label="Tomorrow" {...a11yProps(1)} />
-          <Tab label={moment().day(7).format('ddd, MMM Do')} {...a11yProps(2)} />
-          <Tab label={moment().day(8).format('ddd, MMM Do')} {...a11yProps(3)} />
-          <Tab label={moment().day(9).format('ddd, MMM Do')} {...a11yProps(4)} />
-          <Tab label={moment().day(10).format('ddd, MMM Do')} {...a11yProps(5)} />
-          <Tab label={moment().day(11).format('ddd, MMM Do')} {...a11yProps(6)} />
-          <Tab label={moment().day(12).format('ddd, MMM Do')} {...a11yProps(7)} />
-          <Tab label={moment().day(13).format('ddd, MMM Do')} {...a11yProps(8)} />
-          <Tab label={moment().day(14).format('ddd, MMM Do')} {...a11yProps(9)} />
-          <Tab label={moment().day(15).format('ddd, MMM Do')} {...a11yProps(10)} />
-          <Tab label={moment().day(16).format('ddd, MMM Do')} {...a11yProps(11)} />
-          <Tab label={moment().day(17).format('ddd, MMM Do')} {...a11yProps(12)} />
-          <Tab label={moment().day(18).format('ddd, MMM Do')} {...a11yProps(13)} />
-          <Tab label={moment().day(19).format('ddd, MMM Do')} {...a11yProps(14)} />
-          <Tab label={moment().day(20).format('ddd, MMM Do')} {...a11yProps(15)} />
+          <Tab label={moment().add(2, "days").format('ddd, MMM Do')} {...a11yProps(2)} />
+          <Tab label={moment().add(3, "days").format('ddd, MMM Do')} {...a11yProps(3)} />
+          <Tab label={moment().add(4, "days").format('ddd, MMM Do')} {...a11yProps(4)} />
+          <Tab label={moment().add(5, "days").format('ddd, MMM Do')} {...a11yProps(5)} />
+          <Tab label={moment().add(6, "days").format('ddd, MMM Do')} {...a11yProps(6)} />
+          <Tab label={moment().add(7, "days").format('ddd, MMM Do')} {...a11yProps(7)} />
+          <Tab label={moment().add(8, "days").format('ddd, MMM Do')} {...a11yProps(8)} />
+          <Tab label={moment().add(9, "days").format('ddd, MMM Do')} {...a11yProps(9)} />
+          <Tab label={moment().add(10, "days").format('ddd, MMM Do')} {...a11yProps(10)} />
+          <Tab label={moment().add(11, "days").format('ddd, MMM Do')} {...a11yProps(11)} />
+          <Tab label={moment().add(12, "days").format('ddd, MMM Do')} {...a11yProps(12)} />
+          <Tab label={moment().add(13, "days").format('ddd, MMM Do')} {...a11yProps(13)} />
+          <Tab label={moment().add(14, "days").format('ddd, MMM Do')} {...a11yProps(14)} />
+          <Tab label={moment().add(15, "days").format('ddd, MMM Do')} {...a11yProps(15)} />
         </Tabs>
       </AppBar>
       {
@@ -253,12 +253,12 @@ const BookingCard = ({doctors_id}) => {
               <div className={styles.slotsCont_slots}>
                 {
                   [...slots].map(item => (
+                    // console.log(Number(date.substring(11, 13)+ date.substring(14, 16)) , Number(item.time.substring(0, 2) + item.time.substring(3, 5)));
                     item.type === 0 && !bookedSlots.includes(item.time) 
                     && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
-
-                      value === 0 ? Number(date.substring(11, 13)) < Number(item.time.substring(0, 2)) ? false : true  : false
+                      value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
-                ))
+                  ))
                 }     
               </div>
             </Box>
@@ -273,7 +273,7 @@ const BookingCard = ({doctors_id}) => {
                   [...slots].map(item => (
                     item.type === 1 && !bookedSlots.includes(item.time) 
                     && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
-                      value === 0 ? Number(date.substring(11, 13)) < Number(item.time.substring(0, 2)) ? false : true  : false
+                      value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                 ))
                 }    
@@ -290,7 +290,7 @@ const BookingCard = ({doctors_id}) => {
                   [...slots].map(item => (
                     item.type === 2 && !bookedSlots.includes(item.time) 
                     && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
-                      value === 0 ? Number(date.substring(11, 13)) < Number(item.time.substring(0, 2)) ? false : true  : false
+                      value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                 ))
                 }    
@@ -305,10 +305,10 @@ const BookingCard = ({doctors_id}) => {
               <div className={styles.slotsCont_slots}>
               {
                   slots.map(item => (
-                    // console.log(Number(date.substring(11, 13)+ date.substring(15, 16)) >Number(item.time.substring(0, 2) + item.time.substring(3, 4)))
+                    // console.log(Number(date.substring(11, 13)+ date.substring(15, 16)), Number(item.time.substring(0, 2) + item.time.substring(3, 4)))
                     item.type === 3 && !bookedSlots.includes(item.time) 
                     && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
-                      value === 0 ? Number(date.substring(11, 13)+ date.substring(15, 16)) > Number(item.time.substring(0, 2) + item.time.substring(3, 4))? false : true  : false
+                      value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                   ))
                 }    
