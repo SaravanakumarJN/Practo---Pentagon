@@ -35,6 +35,22 @@ const SearchBar = () => {
         }
     }
 
+    //get location from coordinates
+    // React.useEffect(() => {
+    //     if(coordinates.lat !== undefined && coordinates.long !== undefined){
+    //         geo_reverse_encoding(coordinates)
+    //         .then((data) => {
+    //             // const city = data.results[0].city !== "" ? data.results[0].city : data.results[0].district
+    //             // const locality = data.results[0].locality !== "" ? data.results[0].locality : data.results[0].village
+    //             // const area =  locality + ", " + city
+    //             setLoactionQuery(data.results[0].formatted_address)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    //     }
+    // }, [coordinates])
+
     //get coordinates on mount
     React.useEffect(() => {
         handleGetLocation()
@@ -51,22 +67,7 @@ const SearchBar = () => {
         }
     }, [mainQuery])
 
-    // React.useEffect(() => {
-    //     if(coordinates.lat !== undefined && coordinates.long !== undefined){
-    //         geo_reverse_encoding(coordinates)
-    //         .then((data) => {
-    //             // const city = data.results[0].city !== "" ? data.results[0].city : data.results[0].district
-    //             // const locality = data.results[0].locality !== "" ? data.results[0].locality : data.results[0].village
-    //             // const area =  locality + ", " + city
-    //             setLoactionQuery(data.results[0].formatted_address)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //     }
-    // }, [coordinates])
-
-   
+    //get coordinates from location
     // const handleGetCoordinates = () => {
     //     if(locationQuery !== ""){
     //         geo_encoding(locationQuery)

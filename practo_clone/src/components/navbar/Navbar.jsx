@@ -1,11 +1,23 @@
 import React from 'react'
-import { shallowEqual, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { logout_user } from '../../redux/auth/action'
 import styles from './Navbar.module.css'
 
 const Navbar = () => {
     const history = useHistory()
     const {isLoggedIn, currentUser} = useSelector(state => state.authReducer, shallowEqual)
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        localStorage.removeItem("currentUser")
+        localStorage.removeItem("isLoggedIn")
+        dispatch(logout_user())
+    }
+
+    const handleDrive = () => {
+        history.push("/appointments")
+    }
 
     return (
         <nav className = {styles.nav}>
@@ -58,7 +70,15 @@ const Navbar = () => {
             <div className = {styles.right}>
                 {
                     isLoggedIn
-                    ? <strong>{currentUser.name}</strong>
+                    ? <div className = {styles.profile}>
+                        {currentUser.name} &#9662;
+                        <div
+                            className = {styles.profile_dropdown}
+                        >
+                            <div onClick = {handleDrive}>Your Drive</div>
+                            <div onClick = {handleLogout}>Logout</div>
+                        </div>
+                    </div>
                     : <button
                         className = {styles.login_btn}
                         onClick = {() => history.push("/login")}

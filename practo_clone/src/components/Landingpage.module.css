@@ -188,7 +188,6 @@
    display: flex; 
    align-items: center;
    justify-content: center;
-   background-color: #f8f8fb;
    padding:30px 0px;
    flex-wrap: wrap;
 }

@@ -1,4 +1,4 @@
-import { LOGIN_ERROR_HANDLING, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionType"
+import { LOGIN_ERROR_HANDLING, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_USER } from "./actionType"
 
 const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
@@ -45,6 +45,15 @@ const authReducer = (state = initState, action) => {
                 isLoading : false,
                 isError : false,
                 isLoggedIn : false,
+            }
+        }
+        case LOGOUT_USER : {
+            return{
+                ...state,
+                isLoggedIn : false,
+                isError : false,
+                isLoading : false,
+                currentUser : {}
             }
         }
         default:

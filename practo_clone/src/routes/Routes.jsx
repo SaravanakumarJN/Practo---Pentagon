@@ -44,7 +44,7 @@ const Routes = () => {
                 <Bookingdetails/> 
                 <Footer/>
             </PrivateRoutes>
-            <PrivateRoutes exact path = "/appointments/:userId">
+            <PrivateRoutes exact path = "/appointments">
                 <Navbar/>
                 <Appointments/> 
                 <Footer/>
