@@ -160,6 +160,11 @@ const BookingCard = ({doctors_id}) => {
       time : "20:30",
       timeStr : "8:30", 
       type: 3
+    },
+    {
+      time : "23:30",
+      timeStr : "11:30", 
+      type: 3
     }
   ]
   const [slots, setSlots] = React.useState([...slotArray]);
@@ -247,12 +252,12 @@ const BookingCard = ({doctors_id}) => {
               </div>
               <div className={styles.slotsCont_slots}>
                 {
-                  slots.map(item => (
+                  [...slots].map(item => (
                     item.type === 0 && !bookedSlots.includes(item.time) 
                     && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
-                      idx === 0 ? Number(date.substring(10, 12)) < Number(item.time.substring(0, 2)) ? false : true  : false
+
+                      value === 0 ? Number(date.substring(11, 13)) < Number(item.time.substring(0, 2)) ? false : true  : false
                     }>{item.timeStr}</Button>
-                  
                 ))
                 }     
               </div>
@@ -264,11 +269,14 @@ const BookingCard = ({doctors_id}) => {
                 <p>Afternoon</p>
               </div>
               <div className={styles.slotsCont_slots}>
-                {
-                  slots.map(item => (
-                    item.type === 1 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
-                  ))
-                }     
+              {
+                  [...slots].map(item => (
+                    item.type === 1 && !bookedSlots.includes(item.time) 
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                      value === 0 ? Number(date.substring(11, 13)) < Number(item.time.substring(0, 2)) ? false : true  : false
+                    }>{item.timeStr}</Button>
+                ))
+                }    
               </div>
             </Box>
             <Divider/>
@@ -278,11 +286,14 @@ const BookingCard = ({doctors_id}) => {
                 <p>Evening</p>
               </div>
               <div className={styles.slotsCont_slots}>
-                {
-                  slots.map(item => (
-                    item.type === 2 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
-                  ))
-                }     
+              {
+                  [...slots].map(item => (
+                    item.type === 2 && !bookedSlots.includes(item.time) 
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                      value === 0 ? Number(date.substring(11, 13)) < Number(item.time.substring(0, 2)) ? false : true  : false
+                    }>{item.timeStr}</Button>
+                ))
+                }    
               </div>
             </Box>
             <Divider/>
@@ -292,11 +303,15 @@ const BookingCard = ({doctors_id}) => {
                 <p>Night</p>
               </div>
               <div className={styles.slotsCont_slots}>
-                {
+              {
                   slots.map(item => (
-                    item.type === 3 && !bookedSlots.includes(item.time) && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)}>{item.timeStr}</Button>
+                    // console.log(Number(date.substring(11, 13)+ date.substring(15, 16)) >Number(item.time.substring(0, 2) + item.time.substring(3, 4)))
+                    item.type === 3 && !bookedSlots.includes(item.time) 
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                      value === 0 ? Number(date.substring(11, 13)+ date.substring(15, 16)) > Number(item.time.substring(0, 2) + item.time.substring(3, 4))? false : true  : false
+                    }>{item.timeStr}</Button>
                   ))
-                }     
+                }    
               </div>
             </Box>
           </TabPanel>  

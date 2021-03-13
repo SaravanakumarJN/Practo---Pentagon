@@ -3,7 +3,10 @@ import styles from "./AppointmentsCard.module.css"
 import Button from '@material-ui/core/Button';
 
 
+
 const AppointmentsCard = () => {
+
+
   return (
     <div className={styles.detailCont}>
       <div className={styles.date}>
@@ -14,7 +17,12 @@ const AppointmentsCard = () => {
         <p><b>Dr. Sunny Soni</b></p>
         <p className={styles.specialP}>Wednesday, 12:55 PM</p>
         <p className={styles.specialP}>Aesthetic, Dental Clinic</p>
-        <p>Active</p>
+        <div className={styles.active}>
+          <p>Active</p>
+        </div>
+        <div className={styles.cancelled}>
+          <p>Cancelled</p>
+        </div>
       </div>
       <div className={styles.action}> 
         <Button variant="outlined" color="primary" style={{marginRight: "1em"}}>
