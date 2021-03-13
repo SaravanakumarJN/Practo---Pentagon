@@ -197,6 +197,7 @@ const bookingSchema = new mongoose.Schema({
     name : String,
     contact : String,
     time : String,
+    status:Boolean,
     userId : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "authentication",
@@ -232,10 +233,10 @@ app.get("/appointments/:id",async(req,res)=>{
     res.status(200).send({data:appointments})
 })
 
-app.delete("/appointments/:id",async(req,res)=>{
+app.patch("/appointments/:id",async(req,res)=>{
     const id = req.params.id;
-    const appoint = await Bookings.deleteOne({_id:id});
-    res.status(200).send("Successfully Deleted")
+    const appoint = await Bookings.findByIdAndUpdate(id,req.body,{new:true});
+    res.status(200).send({data:appoint})
 })
 
 // ************** Authentication **************
