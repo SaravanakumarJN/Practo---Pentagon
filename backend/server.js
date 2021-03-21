@@ -222,10 +222,10 @@ app.get("/doctors/:doctor_id/bookings", async(req, res) => {
     const slots = await Bookings.find({doctor_id : id}).lean().exec();
     res.status(200).json({data : slots});
 })
-// app.delete("/bookings/delete",async (req,res)=>{
-//     const del= await Bookings.deleteMany({})
-//     res.status(200).send("deleted")
-// })
+app.delete("/bookings/delete",async (req,res)=>{
+    const del= await Bookings.deleteMany({})
+    res.status(200).send("deleted")
+})
 
 app.get("/appointments/:id",async(req,res)=>{
     const id = req.params.id;
