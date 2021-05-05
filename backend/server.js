@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const uri = require("./uri");
 const cors = require('cors');
-const stripe = require('stripe')("sk_test_51ITniwLuzrELcYjAZlc55fGMQL8SQDAAeqN4smic3ZUMTvlWjhDQvsUQsEy2rTPI4aazIn8j8s6B2BZSG74XPNb600JHhUgpkB");
+const stripe = require('stripe')("sk_test_51ITniwLuzrELcYjAzqnlpGGzSHROmcid6Gm9SX7KOZlo2jCYv005H4YKBvlQW7wXrL49uLW2vomHGs4gUOzord4000faxvFTKB");
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
