@@ -1,6 +1,11 @@
 # Practo :hospital:
 Practo provides a platform that helps consumers with all their healthcare requirements – from finding the healthcare provider to booking an appointment, online doctor consultation, getting their tests done and even ordering medicines.
 
+## Deployed Link & Image Samples
+Click here :point_right: [Practo clone](https://practo.netlify.app/)
+
+![Sample image of project](https://i.imgur.com/bme2syr.png)
+
 ## Features Built
 - User Authentication with Google Auth
 - Dynamic Search for doctors/clinic/speciality 
@@ -8,6 +13,7 @@ Practo provides a platform that helps consumers with all their healthcare requir
 - Book an appointment based on slot availability of doctors
 - Make payment and confirm booking
 - Get user booking history from user drive.
+- **Currently site is responsive for tablets and screen sizes greater than that.**
 
 ## Technology Stack
 - HTML
