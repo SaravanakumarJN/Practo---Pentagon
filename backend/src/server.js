@@ -1,6 +1,8 @@
 const express = require("express")
 const connect = require('./config/db')
 const cors = require('cors')
+const dotenv = require('dotenv')
+dotenv.config()
 
 const doctorsController = require('./controllers/doctor.controller')
 const bookingController = require('./controllers/booking.controller')
@@ -20,10 +22,11 @@ app.use("/user", authController)
 app.use("/booking", stripeController)
 
 
+const port = process.env.PORT || 2233
 const start = async() => {
     await connect();
-    app.listen(2233, () => {
-        console.log("Listening to port 2233")
+    app.listen(port, () => {
+        console.log(`Listening to port ${port}`)
     })
 }
 
