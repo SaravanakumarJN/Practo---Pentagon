@@ -54,7 +54,7 @@ Click here :point_right: [Practo clone](https://practo.netlify.app/)
 ### 4. Run application
 - Before running the application, kill the applications currently running on port 3000 (for frontend) and port 2233 (for backend)
 - Open the clonned repository,
-    - Navigate to backend folder and run `nodemon server.js`in terminal
+    - Navigate to backend folder and run `nodemon src`in terminal
     - Navigate to practo_clone folder and run `npm start` in terminal
 - Your application is now running on `http://localhost:3000/`
 
