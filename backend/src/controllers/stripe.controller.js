@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const { v4: uuidv4 } = require('uuid')
-const stripe = require('stripe')("sk_test_51ITniwLuzrELcYjAzqnlpGGzSHROmcid6Gm9SX7KOZlo2jCYv005H4YKBvlQW7wXrL49uLW2vomHGs4gUOzord4000faxvFTKB")
+const dotenv = require('dotenv')
+dotenv.config()
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 router.post("/booking/payment", (req, res) => {
     const {docData, token} = req.body
