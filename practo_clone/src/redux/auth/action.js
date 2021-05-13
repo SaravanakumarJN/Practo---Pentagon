@@ -34,7 +34,7 @@ const logout_user = () => {
 
 const login_performer = (payload) => (dispatch) => {
     dispatch(login_request())
-    return axios.post(`http://localhost:2233/user/authentication`, {
+    return axios.post(`https://practo-server.herokuapp.com/user/authentication`, {
         ...payload
     })
     .then((res) => {

@@ -11,13 +11,13 @@ function geo_encoding(payload){
 }
 
 function getDoctorByID(payload){
-    return axios.get(`http://localhost:2233/doctors/${payload}/id`)
+    return axios.get(`https://practo-server.herokuapp.com/doctors/${payload}/id`)
     .then(res => res.data)
 }
 
 function getDoctorBySpeciality(payload){
     const {speciality, lat, long} = payload
-    return axios.get(`http://localhost:2233/doctors/${speciality}/speciality`, {
+    return axios.get(`https://practo-server.herokuapp.com/doctors/${speciality}/speciality`, {
         params : {
             lat : lat.trim(),
             long : long.trim()
@@ -28,7 +28,7 @@ function getDoctorBySpeciality(payload){
 
 function getDoctorsWithFilter(payload){
     const {speciality, lat, long, from, to} = payload
-    return axios.get(`http://localhost:2233/doctors/${speciality}/speciality/${from}/from/${to}/to`, {
+    return axios.get(`https://practo-server.herokuapp.com/doctors/${speciality}/speciality/${from}/from/${to}/to`, {
         params : {
             lat : lat.trim(),
             long : long.trim()
@@ -38,7 +38,7 @@ function getDoctorsWithFilter(payload){
 }
 
 function stripePayment(payload){
-    return axios.post("http://localhost:2233/booking/payment", {
+    return axios.post("https://practo-server.herokuapp.com/booking/payment", {
         ...payload
     })
 }

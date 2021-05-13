@@ -36,7 +36,7 @@ const get_doctors_performer = (payload) => (dispatch) =>{
     }
     cancel = axios.CancelToken.source()
 
-    return axios.get(`http://localhost:2233/doctors/${query}/query`, {
+    return axios.get(`https://practo-server.herokuapp.com/doctors/${query}/query`, {
         cancelToken : cancel.token,
         params : {
             lat : coordinates.lat,
