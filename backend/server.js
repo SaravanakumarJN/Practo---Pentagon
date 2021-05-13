@@ -4,6 +4,7 @@ const uri = require("./uri");
 const cors = require('cors');
 const stripe = require('stripe')("sk_test_51ITniwLuzrELcYjAZlc55fGMQL8SQDAAeqN4smic3ZUMTvlWjhDQvsUQsEy2rTPI4aazIn8j8s6B2BZSG74XPNb600JHhUgpkB");
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config()
 
 const app = express();
 
@@ -219,7 +220,7 @@ app.post("/bookings", async(req, res) => {
 
 app.get("/doctors/:doctor_id/bookings", async(req, res) => {
     const id = req.params.doctor_id;
-    const slots = await Bookings.find({doctor_id : id}).lean().exec();
+    const slots = await Bookings.find({doctor_id : id, status : true}).lean().exec();
     res.status(200).json({data : slots});
 })
 // app.delete("/bookings/delete",async (req,res)=>{
@@ -276,11 +277,6 @@ app.post("/user/authentication", async(req, res) => {
 })
 
 
-
-
-
-
-
 // ****************Change by Mandar *********************
 
 app.delete("/appointments/:id",async(req,res)=>{
@@ -328,7 +324,7 @@ app.delete("/appointments/:id",async(req,res)=>{
 
 const start = async() => {
     await connect();
-    app.listen(2233, () => {
+    app.listen(process.env.PORT || 2233, () => {
         console.log("Listening to port 2233");
     })
 }

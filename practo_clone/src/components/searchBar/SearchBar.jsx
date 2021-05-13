@@ -4,7 +4,7 @@ import {useSelector, useDispatch, shallowEqual} from 'react-redux'
 import { get_doctors_performer } from '../../redux/doctorSearch/action'
 import {BiCurrentLocation, BiSearch} from 'react-icons/bi'
 import {GrAddCircle} from 'react-icons/gr'
-// import { geo_reverse_encoding, geo_encoding } from '../../utilities/axios'
+import { geo_reverse_encoding, geo_encoding } from '../../utilities/axios'
 import { SearchResultCard } from '../searchResultCard/SearchResultCard'
 import {useHistory} from 'react-router-dom'
 
@@ -36,20 +36,20 @@ const SearchBar = () => {
     }
 
     //get location from coordinates
-    // React.useEffect(() => {
-    //     if(coordinates.lat !== undefined && coordinates.long !== undefined){
-    //         geo_reverse_encoding(coordinates)
-    //         .then((data) => {
-    //             // const city = data.results[0].city !== "" ? data.results[0].city : data.results[0].district
-    //             // const locality = data.results[0].locality !== "" ? data.results[0].locality : data.results[0].village
-    //             // const area =  locality + ", " + city
-    //             setLoactionQuery(data.results[0].formatted_address)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //     }
-    // }, [coordinates])
+    React.useEffect(() => {
+        if(coordinates.lat !== undefined && coordinates.long !== undefined){
+            geo_reverse_encoding(coordinates)
+            .then((data) => {
+                // const city = data.results[0].city !== "" ? data.results[0].city : data.results[0].district
+                // const locality = data.results[0].locality !== "" ? data.results[0].locality : data.results[0].village
+                // const area =  locality + ", " + city
+                setLoactionQuery(data.results[0].formatted_address)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+    }, [coordinates])
 
     //get coordinates on mount
     React.useEffect(() => {
