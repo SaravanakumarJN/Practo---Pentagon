@@ -256,7 +256,7 @@ const BookingCard = ({doctors_id}) => {
                   [...slots].map(item => (
                     // console.log(Number(date.substring(11, 13)+ date.substring(14, 16)) , Number(item.time.substring(0, 2) + item.time.substring(3, 5)));
                     item.type === 0 && !bookedSlots.includes(item.time) 
-                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                    && <Button variant="filled" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={()=>handleBookSlot(item.time)}  disabled={
                       value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                   ))
@@ -273,7 +273,7 @@ const BookingCard = ({doctors_id}) => {
               {
                   [...slots].map(item => (
                     item.type === 1 && !bookedSlots.includes(item.time) 
-                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={()=>handleBookSlot(item.time)} disabled={
                       value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                 ))
@@ -290,7 +290,7 @@ const BookingCard = ({doctors_id}) => {
               {
                   [...slots].map(item => (
                     item.type === 2 && !bookedSlots.includes(item.time) 
-                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={()=>handleBookSlot(item.time)}  disabled={
                       value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                 ))
@@ -308,7 +308,7 @@ const BookingCard = ({doctors_id}) => {
                   slots.map(item => (
                     // console.log(Number(date.substring(11, 13)+ date.substring(15, 16)), Number(item.time.substring(0, 2) + item.time.substring(3, 4)))
                     item.type === 3 && !bookedSlots.includes(item.time) 
-                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={(e) => handleBookSlot(e.target.value)} disabled={
+                    && <Button variant="outlined" className={classes.slotItem} key={item.time} value={item.time} color="primary" onClick={()=>handleBookSlot(item.time)} disabled={
                       value === 0 ? Number(date.substring(11, 13)+ date.substring(14, 16)) + 15 < Number(item.time.substring(0, 2) + item.time.substring(3, 5))? false : true  : false
                     }>{item.timeStr}</Button>
                   ))

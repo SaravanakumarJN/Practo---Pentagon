@@ -63,7 +63,7 @@ const Appointments = () => {
                 </div>
                 <div className={styles.main_right}>
                    {
-                        appointments?.map(appt => (
+                        appointments?.slice(0).reverse().map(appt => (
                             <AppointmentsCard doctorData={appt.doctor_id} time ={appt.time} id={appt._id} status ={appt.status} key={appt._id}/>
                         ))
                     }

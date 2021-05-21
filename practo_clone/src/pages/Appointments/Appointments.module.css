@@ -1,9 +1,10 @@
 .background{
     background-color: #F1F0F5;
+    padding-bottom: 3em;
 }
 .appointmentCont{
     width: 90%;
-    margin: 5em auto;
+    margin: 3em auto 0;
     background-color: white;
     color: #414146;
 }

@@ -41,7 +41,7 @@ const Bookingdetails = () => {
                 userId : user._id
             }
             bookSlot(postObj);
-            history.push("/");
+            history.push("/appointments");
         })
     }
 
