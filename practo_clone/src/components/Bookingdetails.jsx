@@ -109,7 +109,8 @@ const Bookingdetails = () => {
                         </div>
                         <div>
                             <StripeCheckout
-                                stripeKey = 'pk_test_51ITniwLuzrELcYjA7SOWjOj1CCW8Eg0TGImSIaBoGFns4gAxpx05ePioupp1h0OCUv255AOSeMQoSgPkB9zSnmSJ00Lx00vmxP'
+                                stripeKey = 
+                                'pk_test_51Inb1OSAbCBRnmV9Y2awILweW5mvjAph3m0ix6LthAxH9jOJ7V42pyAVP0NzBqc62itmyEMZC4A4Po0ChQzQdMyz00QSMgiRR7'
                                 token = {makePayment}
                                 name = {`Book appoinment with ${docData.name}`}
                                 amount = {docData.consulting_fee * 100}
