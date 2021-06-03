@@ -21,7 +21,6 @@ app.use("/appointments", appointmentController)
 app.use("/user", authController)
 app.use("/booking", stripeController)
 
-
 const port = process.env.PORT || 2233
 const start = async() => {
     await connect();

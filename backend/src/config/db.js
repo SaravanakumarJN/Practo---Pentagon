@@ -1,4 +1,4 @@
-const uri = require('../uri')
+const uri = require("../uri")
 const mongoose = require('mongoose')
 
 const connect = () =>{
@@ -10,4 +10,4 @@ const connect = () =>{
     })
 }
 
-module.exports = connect
+module.exports = connect;
